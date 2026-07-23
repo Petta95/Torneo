@@ -188,10 +188,12 @@
         { file: 'albicocca.jpg', name: 'Albicocca' },
         { file: 'ananas.jpg', name: 'Ananas' },
         { file: 'anguria.jpg', name: 'Anguria' },
+        { file: 'arancia.jpg', name: 'Arancia' },
         { file: 'avocado.jpg', name: 'Avocado' },
         { file: 'banana.jpg', name: 'Banana' },
         { file: 'ciliegia.jpg', name: 'Ciliegia' },
         { file: 'cocco.jpg', name: 'Cocco' },
+        { file: 'fico.jpg', name: 'Fico' },
         { file: 'fragola.jpg', name: 'Fragola' },
         { file: 'kiwi.jpg', name: 'Kiwi' },
         { file: 'lampone.jpg', name: 'Lampone' },
@@ -201,7 +203,13 @@
         { file: 'melograno.jpg', name: 'Melograno' },
         { file: 'melone.jpg', name: 'Melone' },
         { file: 'mirtillo.jpg', name: 'Mirtillo' },
-        { file: 'pesca.jpg', name: 'Pesca' }
+        { file: 'mora.jpg', name: 'Mora' },
+        { file: 'passion_fruit.jpg', name: 'Frutto della Passione' },
+        { file: 'pera.jpg', name: 'Pera' },
+        { file: 'pesca.jpg', name: 'Pesca' },
+        { file: 'pompelmo.jpg', name: 'Pompelmo' },
+        { file: 'prugna.jpg', name: 'Prugna' },
+        { file: 'uva.jpg', name: 'Uva' }
       ]
     },
 
@@ -220,13 +228,13 @@
         { file: 'norma.jpg', name: 'Pasta alla Norma' },
         { file: 'pesto.jpg', name: 'Pesto' },
         { file: 'puttanesca.jpg', name: 'Puttanesca' },
-        { file: 'ragu.jpg', name: 'Ragù' },
+        { file: 'ragu.jpg', name: 'Ragù' },        
+        { file: 'ragu_di_cervo.jpg', name: 'Ragù di Cervo' },
         { file: 'salmone.jpg', name: 'Pasta al Salmone' },
         { file: 'scoglio.jpg', name: 'Pasta allo Scoglio' },
         { file: 'sorrentina.jpg', name: 'Pasta alla Sorrentina' },
         { file: 'tonno.jpg', name: 'Pasta al Tonno' },
         { file: 'vongole.jpg', name: 'Vongole' }
-        // Nota: servono 16 immagini (ne mancano 1) perché il torneo possa attivarsi.
       ]
     },
 
