@@ -41,7 +41,7 @@
       this.title = opts.title;
       this.emoji = opts.emoji || '🏆';
       this.description = opts.description || '';
-      this.backLink = opts.backLink || 'Torneo.html';
+      this.backLink = opts.backLink || 'index.html';
       this.container = document.getElementById(opts.containerId || 'app');
       this.random = opts.random !== false;
 

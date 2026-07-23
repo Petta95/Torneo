@@ -38,7 +38,7 @@
       <div style="max-width:520px;margin:80px auto;text-align:center;padding:0 24px;">
         <h1 style="font-family:var(--font-display);">Categoria non trovata</h1>
         <p style="color:var(--text-dim);margin:12px 0 24px;">Questa sfida non esiste o non è ancora disponibile.</p>
-        <a class="btn btn-primary" href="Torneo.html">← Torna alle categorie</a>
+        <a class="btn btn-primary" href="index.html">← Torna alle categorie</a>
       </div>
     `;
   } else {
@@ -50,7 +50,7 @@
       title: category.title,
       emoji: category.emoji,
       description: category.description,
-      backLink: 'Torneo.html',
+      backLink: 'index.html',
       participants: TorneoCategories.buildParticipants(category)
     });
   }
