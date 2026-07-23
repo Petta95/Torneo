@@ -336,6 +336,131 @@
         { file: 'moldavia_dragostea_din_tei.mp3', song: 'Dragostea din Tei', country: 'Moldavia', flagCode: 'md' },
         { file: 'norvegia_faded.mp3', song: 'Faded', country: 'Norvegia', flagCode: 'no' }
       ]
+    },
+
+    viaggi: {
+      title: 'Viaggi',
+      emoji: '✈️',
+      description: 'Qual è la destinazione dei sogni? Scegli la tua preferita ad ogni sfida fino alla finale.',
+      folder: 'assets/images/viaggi',
+      items: [
+        { file: 'bora_bora.jpg', name: 'Bora Bora' },
+        { file: 'cappadocia.jpg', name: 'Cappadocia' },
+        { file: 'cina.jpg', name: 'Cina' },
+        { file: 'costiera_amalfitana.jpg', name: 'Costiera Amalfitana' },
+        { file: 'dubai.jpg', name: 'Dubai' },
+        { file: 'egitto.jpg', name: 'Egitto' },
+        { file: 'hawaii.jpg', name: 'Hawaii' },
+        { file: 'india.jpg', name: 'India' },
+        { file: 'islanda.jpg', name: 'Islanda' },
+        { file: 'kenya.jpg', name: 'Kenya' },
+        { file: 'lapponia.jpg', name: 'Lapponia' },
+        { file: 'maldive.jpg', name: 'Maldive' },
+        { file: 'new_york.jpg', name: 'New York' },
+        { file: 'parchi_americani.jpg', name: 'Parchi Americani' },
+        { file: 'patagonia.jpg', name: 'Patagonia' },
+        { file: 'petra.jpg', name: 'Petra' },
+        { file: 'rio_de_janeiro.jpg', name: 'Rio de Janeiro' },
+        { file: 'santorini.jpg', name: 'Santorini' },
+        { file: 'tokyo.jpg', name: 'Tokyo' }
+      ]
+    },
+
+    superpoteri: {
+      title: 'Superpoteri',
+      emoji: '🦸',
+      description: 'Quale superpotere vorresti avere? Scegli il tuo preferito ad ogni sfida fino alla finale.',
+      folder: 'assets/images/superpoteri',
+      items: [
+        { file: 'elasticita.jpg', name: 'Elasticità' },
+        { file: 'intangibilita.jpg', name: 'Intangibilità' },
+        { file: 'invisibilita.jpg', name: 'Invisibilità' },
+        { file: 'leggere_mente.jpg', name: 'Leggere la Mente' },
+        { file: 'manipolazione_fuoco.jpg', name: 'Manipolazione del Fuoco' },
+        { file: 'manipolazione_tempo.jpg', name: 'Manipolazione del Tempo' },
+        { file: 'metamorfosi.jpg', name: 'Metamorfosi' },
+        { file: 'moltiplicazione.jpg', name: 'Moltiplicazione' },
+        { file: 'percezione_pericolo.jpg', name: 'Percezione del Pericolo' },
+        { file: 'poliglotta.jpg', name: 'Poliglotta' },
+        { file: 'preveggenza.jpg', name: 'Preveggenza' },
+        { file: 'rigenerazione.jpg', name: 'Rigenerazione' },
+        { file: 'superforza.jpg', name: 'Superforza' },
+        { file: 'superintelligenza.jpg', name: 'Superintelligenza' },
+        { file: 'supervelocita.jpg', name: 'Supervelocità' },
+        { file: 'telecinesi.jpg', name: 'Telecinesi' },
+        { file: 'teletrasporto.jpg', name: 'Teletrasporto' },
+        { file: 'volare.jpg', name: 'Volare' }
+      ]
+    },
+
+    cani: {
+      title: 'Cani',
+      emoji: '🐶',
+      description: 'Qual è la razza di cane più bella? Scegli la tua preferita ad ogni sfida fino alla finale.',
+      folder: 'assets/images/cani',
+      items: [
+        { file: 'airedale_terrier.jpg', name: 'Airedale Terrier' },
+        { file: 'akita.jpg', name: 'Akita' },
+        { file: 'alano.jpg', name: 'Alano' },
+        { file: 'australian_shepherd.jpg', name: 'Australian Shepherd' },
+        { file: 'barboncino.jpg', name: 'Barboncino' },
+        { file: 'bassotto.jpg', name: 'Bassotto' },
+        { file: 'beagle.jpg', name: 'Beagle' },
+        { file: 'bernese.jpg', name: 'Bernese' },
+        { file: 'border_collie.jpg', name: 'Border Collie' },
+        { file: 'boxer.jpg', name: 'Boxer' },
+        { file: 'bull_terrier.jpg', name: 'Bull Terrier' },
+        { file: 'bulldog_francese.jpg', name: 'Bulldog Francese' },
+        { file: 'bulldog_inglese.jpg', name: 'Bulldog Inglese' },
+        { file: 'cane_lupo_cecoslovacco.jpg', name: 'Cane Lupo Cecoslovacco' },
+        { file: 'carlino.jpg', name: 'Carlino' },
+        { file: 'cavalier_king.jpg', name: 'Cavalier King Charles' },
+        { file: 'chihuahua.jpg', name: 'Chihuahua' },
+        { file: 'chow_chow.jpg', name: 'Chow Chow' },
+        { file: 'cocker.jpg', name: 'Cocker Spaniel' },
+        { file: 'corgi.jpg', name: 'Corgi' },
+        { file: 'corso.jpg', name: 'Cane Corso' },
+        { file: 'dalmata.jpg', name: 'Dalmata' },
+        { file: 'dobermann.jpg', name: 'Dobermann' },
+        { file: 'golden_retriever.jpg', name: 'Golden Retriever' },
+        { file: 'husky.jpg', name: 'Husky' },
+        { file: 'labrador.jpg', name: 'Labrador' },
+        { file: 'levriero.jpg', name: 'Levriero' },
+        { file: 'pastore_maremmano.jpg', name: 'Pastore Maremmano' },
+        { file: 'pastore_tedesco.jpg', name: 'Pastore Tedesco' },
+        { file: 'pechinese.jpg', name: 'Pechinese' },
+        { file: 'pitbull.jpg', name: 'Pitbull' },
+        { file: 'rottweiler.jpg', name: 'Rottweiler' },
+        { file: 'san_bernardo.jpg', name: 'San Bernardo' },
+        { file: 'sharpei.jpg', name: 'Shar Pei' },
+        { file: 'shiba_inu.jpg', name: 'Shiba Inu' },
+        { file: 'yorkshire_terrier.jpg', name: 'Yorkshire Terrier' }
+      ]
+    },
+
+    formati_di_pasta: {
+      title: 'Formati di Pasta',
+      emoji: '🍜',
+      description: 'Qual è il formato di pasta migliore in assoluto? Scegli il tuo preferito ad ogni sfida fino alla finale.',
+      folder: 'assets/images/formati_di_pasta',
+      items: [
+        { file: 'casarecce.jpg', name: 'Casarecce' },
+        { file: 'conchiglie.jpg', name: 'Conchiglie' },
+        { file: 'farfalle.jpg', name: 'Farfalle' },
+        { file: 'fusilli.jpg', name: 'Fusilli' },
+        { file: 'garganelli.jpg', name: 'Garganelli' },
+        { file: 'gnocchi.jpg', name: 'Gnocchi' },
+        { file: 'linguine.jpg', name: 'Linguine' },
+        { file: 'mezze_penne.jpg', name: 'Mezze Penne' },
+        { file: 'orecchiette.jpg', name: 'Orecchiette' },
+        { file: 'penne_rigate.jpg', name: 'Penne Rigate' },
+        { file: 'ravioli.jpg', name: 'Ravioli' },
+        { file: 'rigatoni.jpg', name: 'Rigatoni' },
+        { file: 'ruote.jpg', name: 'Ruote' },
+        { file: 'spaghetti.jpg', name: 'Spaghetti' },
+        { file: 'tagliatelle.jpg', name: 'Tagliatelle' },
+        { file: 'tortellini.jpg', name: 'Tortellini' }
+      ]
     }
   };
 
