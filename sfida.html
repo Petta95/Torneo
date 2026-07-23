@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sfida — Torneo</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<style id="accentStyle"></style>
+</head>
+<body>
+
+<div id="app"></div>
+
+<script src="assets/js/categories.js"></script>
+<script src="assets/js/flags.js"></script>
+<script src="assets/js/bracket.js"></script>
+<script>
+  const ACCENTS = {
+    cibo_italiano: { accent: '#e11d48', accent2: '#f59e0b' },
+    celebrita_donne: { accent: '#db2777', accent2: '#f59e0b' },
+    celebrita_uomini: { accent: '#2563eb', accent2: '#f59e0b' },
+    film_di_animazione: { accent: '#7c3aed', accent2: '#f59e0b' },
+    serie_tv: { accent: '#0891b2', accent2: '#f59e0b' },
+    anime: { accent: '#4f46e5', accent2: '#f59e0b' },
+    frutta: { accent: '#16a34a', accent2: '#f59e0b' },
+    pasta: { accent: '#d97706', accent2: '#f59e0b' },
+    profumi: { accent: '#c026d3', accent2: '#f59e0b' },
+    verdura: { accent: '#059669', accent2: '#f59e0b' },
+    coppie_cibo: { accent: '#ea580c', accent2: '#f59e0b' },
+    musica: { accent: '#3b82f6', accent2: '#f59e0b' }
+  };
+
+  const key = new URLSearchParams(location.search).get('c');
+  const category = key && TorneoCategories.getCategory(key);
+
+  if (!category) {
+    document.getElementById('app').innerHTML = `
+      <div style="max-width:520px;margin:80px auto;text-align:center;padding:0 24px;">
+        <h1 style="font-family:var(--font-display);">Categoria non trovata</h1>
+        <p style="color:var(--text-dim);margin:12px 0 24px;">Questa sfida non esiste o non è ancora disponibile.</p>
+        <a class="btn btn-primary" href="Torneo.html">← Torna alle categorie</a>
+      </div>
+    `;
+  } else {
+    const theme = ACCENTS[key] || { accent: '#e11d48', accent2: '#f59e0b' };
+    document.getElementById('accentStyle').textContent = `:root{ --accent: ${theme.accent}; --accent-2: ${theme.accent2}; }`;
+
+    new TorneoBracket({
+      containerId: 'app',
+      title: category.title,
+      emoji: category.emoji,
+      description: category.description,
+      backLink: 'Torneo.html',
+      participants: TorneoCategories.buildParticipants(category)
+    });
+  }
+</script>
+
+</body>
+</html>
