@@ -378,28 +378,35 @@ button{ font-family: inherit; }
 
 .slot .zoom-btn{
   position: absolute;
-  top: 5px;
-  right: 5px;
-  width: 22px;
-  height: 22px;
+  top: 6px;
+  right: 6px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  border: none;
-  background: rgba(6,8,20,0.65);
+  border: 1.5px solid rgba(255,255,255,0.4);
+  background: rgba(6,8,20,0.75);
   color: #fff;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: zoom-in;
-  opacity: 0.8;
-  transition: opacity .18s ease, transform .18s ease, background .18s ease;
+  opacity: 0.95;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  transition: opacity .18s ease, transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
 }
 
 .slot .zoom-btn:hover{
   opacity: 1;
-  background: rgba(0,0,0,0.85);
-  transform: scale(1.08);
+  background: rgba(0,0,0,0.92);
+  border-color: rgba(255,255,255,0.7);
+  transform: scale(1.14);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+}
+
+.slot .zoom-btn:active{
+  transform: scale(0.94);
 }
 
 /* Categorie audio (es. "musica"): bandiera al posto della foto + play */
@@ -481,7 +488,9 @@ button{ font-family: inherit; }
 
 .slot.tbd .name{ color: var(--text-dim); }
 
-.slot.selectable:hover{
+.slot.clickable{ cursor: pointer; }
+
+.slot.clickable:hover{
   background: rgba(255,255,255,0.08);
   border-color: rgba(255,255,255,0.22);
   transform: translateY(-2px) scale(1.02);
@@ -509,20 +518,32 @@ button{ font-family: inherit; }
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background .18s ease;
+}
+
+/* Il vincitore resta cliccabile: ci si passa sopra per annullare la scelta */
+.slot.winner.clickable:hover{
+  background: rgba(239,68,68,0.12);
+  border-color: rgba(239,68,68,0.4);
+}
+
+.slot.winner.clickable:hover::after{
+  content: '↺';
+  background: var(--danger);
+  color: #fff;
 }
 
 .slot.eliminated{
   opacity: 0.32;
   filter: grayscale(0.6);
-  cursor: default;
 }
 
 .slot.eliminated .thumb img{ filter: grayscale(0.3); }
 
-.slot.locked{ cursor: default; }
-
-.match.decided .slot:not(.winner):not(.tbd){
-  pointer-events: none;
+/* L'eliminato resta cliccabile: un click lo rimette in gioco al posto dell'altro */
+.slot.eliminated.clickable:hover{
+  opacity: 0.72;
+  filter: grayscale(0.15);
 }
 
 /* Final / winner column emphasis */
@@ -767,9 +788,9 @@ button{ font-family: inherit; }
   }
 
   .slot .zoom-btn{
-    width: 30px;
-    height: 30px;
-    font-size: 14px;
+    width: 34px;
+    height: 34px;
+    font-size: 16px;
     top: 6px;
     right: 6px;
   }

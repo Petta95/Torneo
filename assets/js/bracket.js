@@ -119,6 +119,7 @@
           </div>
         </div>
         <div class="winner-overlay" id="winnerOverlay">
+          <button class="lightbox-close" id="winnerClose" aria-label="Torna al tabellone">✕</button>
           <div class="winner-card">
             <div class="trophy">🏆</div>
             <div class="label">Il vincitore è</div>
@@ -170,8 +171,21 @@
       this.lightbox.addEventListener('click', (e) => {
         if (e.target === this.lightbox) this._closeLightbox();
       });
+
+      // L'overlay del vincitore si può chiudere senza ricaricare la pagina,
+      // per poter tornare indietro e cambiare una scelta anche a torneo finito.
+      this.container.querySelector('#winnerClose').addEventListener('click', () => {
+        this.overlay.classList.remove('show');
+      });
+      this.overlay.addEventListener('click', (e) => {
+        if (e.target === this.overlay) this.overlay.classList.remove('show');
+      });
+
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') this._closeLightbox();
+        if (e.key === 'Escape') {
+          this._closeLightbox();
+          this.overlay.classList.remove('show');
+        }
       });
 
       this.winnerPlayBtn = this.container.querySelector('#winnerPlayBtn');
@@ -249,10 +263,6 @@
 
       this._updateRoundIndicator();
       requestAnimationFrame(() => this._drawConnectors());
-
-      if (this._isComplete()) {
-        setTimeout(() => this._showWinner(this.final.winner), 650);
-      }
     }
 
     _renderSide(key) {
@@ -311,7 +321,7 @@
     }
 
     _renderMatch(match, onSelect) {
-      const wrap = el('div', 'match' + (match.winner ? ' decided' : ''));
+      const wrap = el('div', 'match');
       wrap.appendChild(this._renderSlot(match, 'a', onSelect));
       wrap.appendChild(this._renderSlot(match, 'b', onSelect));
       return wrap;
@@ -322,14 +332,16 @@
       const isTbd = !participant;
       const isWinner = match.winner && participant && match.winner.id === participant.id;
       const isEliminated = match.winner && participant && !isWinner;
-      const selectable = !isTbd && !match.winner && match.a && match.b;
+      // Una volta noti entrambi gli sfidanti, lo slot resta sempre cliccabile:
+      // si può scegliere, cambiare idea (scambiare il vincitore) o annullare
+      // la scelta ricliccando chi ha già vinto, a qualsiasi turno.
+      const selectable = !isTbd && match.a && match.b;
 
       const slot = el('div', 'slot');
       if (isTbd) slot.classList.add('tbd');
       if (isWinner) slot.classList.add('winner');
       if (isEliminated) slot.classList.add('eliminated');
-      if (selectable) slot.classList.add('selectable');
-      if (!selectable && !isTbd) slot.classList.add('locked');
+      if (selectable) slot.classList.add('clickable');
 
       const thumb = el('div', 'thumb');
       if (participant && participant.audio) {
@@ -381,18 +393,42 @@
 
       if (selectable) {
         slot.addEventListener('click', () => onSelect(side));
+        slot.title = isWinner
+          ? 'Clicca per annullare questa scelta'
+          : match.winner
+            ? 'Clicca per scegliere questo invece'
+            : 'Clicca per scegliere questo';
       }
 
       return slot;
     }
 
+    // Selezionare uno sfidante è sempre permesso, anche se il match era già
+    // deciso: se si sceglie chi aveva già vinto, la scelta viene annullata
+    // (il match torna indecisо); se si sceglie l'altro, il vincitore viene
+    // scambiato. In entrambi i casi, tutto ciò che nei turni successivi
+    // dipendeva dal vecchio vincitore viene ripulito a cascata, così il
+    // tabellone resta sempre coerente a qualunque turno si torni indietro.
     _selectSideWinner(key, r, matchIndex, side) {
       const rounds = this[key].rounds;
       const match = rounds[r][matchIndex];
-      if (match.winner) return;
-      const winner = match[side];
-      match.winner = winner;
+      const clicked = match[side];
 
+      if (match.winner === clicked) {
+        this._clearDownstreamOf(key, r, matchIndex);
+        match.winner = null;
+      } else {
+        if (match.winner) this._clearDownstreamOf(key, r, matchIndex);
+        match.winner = clicked;
+        this._propagateWinner(key, r, matchIndex, clicked);
+      }
+
+      this.render();
+      this._maybeShowWinner();
+    }
+
+    _propagateWinner(key, r, matchIndex, winner) {
+      const rounds = this[key].rounds;
       if (r + 1 < rounds.length) {
         const nextMatch = rounds[r + 1][Math.floor(matchIndex / 2)];
         const nextSlot = matchIndex % 2 === 0 ? 'a' : 'b';
@@ -400,14 +436,48 @@
       } else {
         this.final[key === 'left' ? 'a' : 'b'] = winner;
       }
+    }
 
-      this.render();
+    // Ripulisce a cascata tutto ciò che, nei turni successivi di questo
+    // lato (fino alla finale), era stato costruito sopra al vincitore
+    // attuale del match (r, matchIndex), prima che quel vincitore cambi
+    // o venga annullato.
+    _clearDownstreamOf(key, r, matchIndex) {
+      const rounds = this[key].rounds;
+      if (r + 1 < rounds.length) {
+        const nextIndex = Math.floor(matchIndex / 2);
+        const nextMatch = rounds[r + 1][nextIndex];
+        const nextSlot = matchIndex % 2 === 0 ? 'a' : 'b';
+        if (nextMatch.winner) {
+          this._clearDownstreamOf(key, r + 1, nextIndex);
+          nextMatch.winner = null;
+        }
+        nextMatch[nextSlot] = null;
+      } else {
+        if (this.final.winner) {
+          this.final.winner = null;
+          this.overlay.classList.remove('show');
+        }
+        this.final[key === 'left' ? 'a' : 'b'] = null;
+      }
     }
 
     _selectFinalWinner(side) {
-      if (this.final.winner) return;
-      this.final.winner = this.final[side];
+      const clicked = this.final[side];
+      if (this.final.winner === clicked) {
+        this.final.winner = null;
+        this.overlay.classList.remove('show');
+      } else {
+        this.final.winner = clicked;
+      }
       this.render();
+      this._maybeShowWinner();
+    }
+
+    _maybeShowWinner() {
+      if (this._isComplete()) {
+        setTimeout(() => this._showWinner(this.final.winner), 650);
+      }
     }
 
     _isComplete() {
