@@ -49,13 +49,21 @@
         { file: 'emilia_clarke.jpg', name: 'Emilia Clarke' },
         { file: 'emily_ratajkowski.jpg', name: 'Emily Ratajkowski' },
         { file: 'emma_watson.jpg', name: 'Emma Watson' },
+        { file: 'gal_gadot.jpg', name: 'Gal Gadot' },
+        { file: 'gigi_hadid.jpg', name: 'Gigi Hadid' },
         { file: 'jessica_alba.jpg', name: 'Jessica Alba' },
+        { file: 'kendall_jenner.jpg', name: 'Kendall Jenner' },
+        { file: 'keyra_knightley.jpg', name: 'Keira Knightley' },
         { file: 'margot_robbie.jpg', name: 'Margot Robbie' },
         { file: 'megan.jpg', name: 'Megan Fox' },
         { file: 'monica_bellucci.jpg', name: 'Monica Bellucci' },
         { file: 'natalie_portman.jpg', name: 'Natalie Portman' },
+        { file: 'penelope_cruz.jpg', name: 'Penélope Cruz' },
+        { file: 'rihanna.jpg', name: 'Rihanna' },
         { file: 'scarlett_johannson.jpg', name: 'Scarlett Johansson' },
-        { file: 'sidney_sweeney.jpg', name: 'Sydney Sweeney' }
+        { file: 'sidney_sweeney.jpg', name: 'Sydney Sweeney' },
+        { file: 'taylor_hill.jpg', name: 'Taylor Hill' },
+        { file: 'zendaya.jpg', name: 'Zendaya' }
       ]
     },
 
@@ -468,6 +476,92 @@
         { file: 'spaghetti.jpg', name: 'Spaghetti' },
         { file: 'tagliatelle.jpg', name: 'Tagliatelle' },
         { file: 'tortellini.jpg', name: 'Tortellini' }
+      ]
+    },
+
+    personaggi_nana: {
+      title: 'Personaggi di Nana',
+      emoji: '🎸',
+      description: "Qual è il personaggio più amato di Nana? Scegli il tuo preferito ad ogni sfida fino alla finale.",
+      folder: 'assets/images/personaggi_nana',
+      items: [
+        { file: 'ginpei.jpg', name: 'Ginpei' },
+        { file: 'junko.jpg', name: 'Junko' },
+        { file: 'kyosuke.jpg', name: 'Kyosuke' },
+        { file: 'misato.jpg', name: 'Misato' },
+        { file: 'nana_komatsu.jpg', name: 'Nana Komatsu (Hachi)' },
+        { file: 'nana_osaki.jpg', name: 'Nana Osaki' },
+        { file: 'naoki.jpg', name: 'Naoki' },
+        { file: 'nobu.jpg', name: 'Nobu' },
+        { file: 'reira.jpg', name: 'Reira' },
+        { file: 'ren.jpg', name: 'Ren' },
+        { file: 'sachiko.jpg', name: 'Sachiko' },
+        { file: 'shin.jpg', name: 'Shin' },
+        { file: 'shoji.jpg', name: 'Shoji' },
+        { file: 'takashi.jpg', name: 'Takashi' },
+        { file: 'takumi.jpg', name: 'Takumi' },
+        { file: 'yasu.jpg', name: 'Yasu' }
+      ]
+    },
+
+    marche_di_moda: {
+      title: 'Marche di Moda',
+      emoji: '👜',
+      description: 'Qual è la marca di moda migliore in assoluto? Scegli la tua preferita ad ogni sfida fino alla finale.',
+      folder: 'assets/images/marche_di_moda',
+      items: [
+        { file: 'acne_studios.jpg', name: 'Acne Studios' },
+        { file: 'armani.jpg', name: 'Armani' },
+        { file: 'bottega_veneta.jpg', name: 'Bottega Veneta' },
+        { file: 'burberry.jpg', name: 'Burberry' },
+        { file: 'burlon.jpg', name: 'Marcelo Burlon' },
+        { file: 'chanel.jpg', name: 'Chanel' },
+        { file: 'comme_des_garcons.jpg', name: 'Comme des Garçons' },
+        { file: 'dior.jpg', name: 'Dior' },
+        { file: 'dolce_e_gabbana.jpg', name: 'Dolce & Gabbana' },
+        { file: 'fendi.jpg', name: 'Fendi' },
+        { file: 'ferragamo.jpg', name: 'Ferragamo' },
+        { file: 'gucci.jpg', name: 'Gucci' },
+        { file: 'hermes.jpg', name: 'Hermès' },
+        { file: 'kenzo.jpg', name: 'Kenzo' },
+        { file: 'louis_vitton.jpg', name: 'Louis Vuitton' },
+        { file: 'marc_jacobs.jpg', name: 'Marc Jacobs' },
+        { file: 'maxmara.jpg', name: 'Max Mara' },
+        { file: 'moschino.jpg', name: 'Moschino' },
+        { file: 'off_white.jpg', name: 'Off-White' },
+        { file: 'prada.jpg', name: 'Prada' },
+        { file: 'ralph_lauren.jpg', name: 'Ralph Lauren' },
+        { file: 'stella_mccartney.jpg', name: 'Stella McCartney' },
+        { file: 'valentino.jpg', name: 'Valentino' },
+        { file: 'versace.jpg', name: 'Versace' },
+        { file: 'yves_saint_laurent.jpg', name: 'Yves Saint Laurent' }
+      ]
+    },
+
+    tradizioni_giappone: {
+      title: 'Tradizioni del Giappone',
+      emoji: '⛩️',
+      description: 'Qual è la tradizione giapponese più affascinante? Scegli la tua preferita ad ogni sfida fino alla finale.',
+      folder: 'assets/images/tradizioni_giappone',
+      items: [
+        { file: 'Jidohanbaiki.jpg', name: 'Jidohanbaiki (Distributori Automatici)' },
+        { file: 'bento.jpg', name: 'Bento' },
+        { file: 'cerimonia_del_te.jpg', name: 'Cerimonia del Tè' },
+        { file: 'cherry_blossom.jpg', name: 'Fiori di Ciliegio (Sakura)' },
+        { file: 'giardini_zen.jpg', name: 'Giardini Zen' },
+        { file: 'karaoke.jpg', name: 'Karaoke' },
+        { file: 'kimono_e_yukata.jpg', name: 'Kimono e Yukata' },
+        { file: 'love_hotels.jpg', name: 'Love Hotel' },
+        { file: 'maid_cafe.jpg', name: 'Maid Café' },
+        { file: 'manga_shops.jpg', name: 'Negozi di Manga' },
+        { file: 'matsuri.jpg', name: 'Matsuri (Festival)' },
+        { file: 'onsen.jpg', name: 'Onsen (Terme)' },
+        { file: 'ramen_shops.jpg', name: 'Ramen Shop' },
+        { file: 'sake.jpg', name: 'Sakè' },
+        { file: 'sumo.jpg', name: 'Sumo' },
+        { file: 'sushi.jpg', name: 'Sushi' },
+        { file: 'tokyo_food_market.jpg', name: 'Mercato del Cibo di Tokyo' },
+        { file: 'toro_nagashi.jpg', name: 'Toro Nagashi' }
       ]
     }
   };
