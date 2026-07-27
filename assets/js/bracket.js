@@ -78,12 +78,34 @@
     // dal flusso (position:fixed, fuori schermo), quindi non influenza mai
     // l'altezza della pagina né la posizione di scroll.
     _measureRowHeight() {
-      const sample = { a: this.participants[0], b: this.participants[1] || this.participants[0], winner: null };
+      // Misuriamo il caso peggiore (i due nomi più lunghi) nella colonna
+      // più larga (round-leaf, ottavi): è lì che le foto sono più alte,
+      // quindi quel valore basta come altezza di riga per tutti i turni
+      // successivi, che sono più stretti e via via più bassi.
+      const [longestA, longestB] = this._widestParticipants(2);
+      const sample = { a: longestA, b: longestB, winner: null };
       const matchEl = this._renderMatch(sample, () => {});
       this._measureBox.appendChild(matchEl);
       const height = Math.ceil(matchEl.getBoundingClientRect().height);
       matchEl.remove();
       return height > 0 ? height + 16 : ROW_HEIGHT_FALLBACK;
+    }
+
+    _widestParticipants(n) {
+      const probe = document.createElement('span');
+      probe.style.cssText = 'position:fixed; top:-9999px; left:-9999px; white-space:nowrap; font-size:0.78rem; font-weight:600;';
+      document.body.appendChild(probe);
+      const ranked = this.participants
+        .filter((p) => p && p.name)
+        .map((p) => {
+          probe.textContent = p.name;
+          return { p, w: probe.getBoundingClientRect().width };
+        })
+        .sort((a, b) => b.w - a.w);
+      probe.remove();
+      const top = ranked.slice(0, n).map((x) => x.p);
+      while (top.length < n) top.push(this.participants[0]);
+      return top;
     }
 
     _buildRoundsFor(participantsArr) {
@@ -140,7 +162,7 @@
         </div>
       `;
 
-      this._measureBox = el('div', 'round');
+      this._measureBox = el('div', 'round round-leaf');
       this._measureBox.style.position = 'fixed';
       this._measureBox.style.top = '0';
       this._measureBox.style.left = '-9999px';
@@ -273,7 +295,7 @@
 
       sideObj.rounds.forEach((matches, r) => {
         const span = Math.pow(2, r);
-        const col = el('div', 'round');
+        const col = el('div', r === 0 ? 'round round-leaf' : 'round');
 
         const label = el('div', 'round-label', roundLabel(matches.length * 2));
         col.appendChild(label);
@@ -281,6 +303,7 @@
         const grid = el('div');
         grid.style.display = 'grid';
         grid.style.gridTemplateRows = `repeat(${totalLeaves}, ${this.rowHeight}px)`;
+        grid.style.gridTemplateColumns = 'minmax(0, 1fr)';
         grid.style.rowGap = '0';
         grid.style.columnGap = '0';
 

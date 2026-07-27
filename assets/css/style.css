@@ -22,7 +22,8 @@
   --shadow: 0 10px 30px rgba(0,0,0,0.35);
   --font-display: 'Poppins', 'Segoe UI', sans-serif;
   --font-body: 'Inter', 'Segoe UI', sans-serif;
-  --col-w: clamp(118px, 11.8vw, 205px);
+  --col-w: clamp(100px, 9.6vw, 160px);
+  --col-w-leaf: clamp(150px, 15.6vw, 240px);
   --col-gap: clamp(8px, 1.6vw, 26px);
 }
 
@@ -320,6 +321,10 @@ button{ font-family: inherit; }
   z-index: 1;
 }
 
+.round.round-leaf{
+  width: var(--col-w-leaf);
+}
+
 .final-col{
   justify-content: center;
   align-self: center;
@@ -346,6 +351,7 @@ button{ font-family: inherit; }
   border-radius: var(--radius);
   padding: 6px;
   box-shadow: var(--shadow);
+  min-width: 0;
 }
 
 .slot{
@@ -358,12 +364,13 @@ button{ font-family: inherit; }
   transition: transform .18s ease, background .18s ease, border-color .18s ease, opacity .3s ease;
   cursor: pointer;
   position: relative;
+  min-width: 0;
 }
 
 .slot .thumb{
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 4 / 3;
   border-radius: 8px;
   overflow: hidden;
   background: linear-gradient(135deg, var(--bg-2), var(--bg-1));
@@ -467,9 +474,9 @@ button{ font-family: inherit; }
   color: var(--text);
   line-height: 1.2;
   text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-word;
   width: 100%;
 }
 
@@ -774,7 +781,7 @@ button{ font-family: inherit; }
     scroll-snap-type: x proximity;
     -webkit-overflow-scrolling: touch;
   }
-  :root{ --col-w: clamp(122px, 34vw, 175px); --col-gap: 12px; }
+  :root{ --col-w: clamp(100px, 25vw, 132px); --col-w-leaf: clamp(132px, 36vw, 180px); --col-gap: 12px; }
 
   .round, .final-col{ scroll-snap-align: center; }
 
