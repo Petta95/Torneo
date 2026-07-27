@@ -563,6 +563,34 @@
         { file: 'tokyo_food_market.jpg', name: 'Mercato del Cibo di Tokyo' },
         { file: 'toro_nagashi.jpg', name: 'Toro Nagashi' }
       ]
+    },
+
+    momenti_importanti: {
+      title: 'Momenti importanti',
+      emoji: '⛩️',
+      description: 'Qual è il momento che ricordi con più felicità? Scegli il tuo preferito, anche se sono tutti bellissimi.',
+      folder: 'assets/images/momenti',
+      items: [
+        { file: 'atene_con_tutti_insieme.jpg', name: 'Atene con tutti insieme' },
+        { file: 'bere_un_bicchiere_con_nonno.jpg', name: 'Bere un bicchiere con il nonno' },
+        { file: 'berlino_con_steffi.jpg', name: 'Berlino con Steffi' },
+        { file: 'essere_vestiti_da_bambina_da_nonna.jpg', name: 'Essere vestiti da bambina dalla nonna' },
+        { file: 'film_sul_divano_con_petta_e_mamma.jpg', name: 'Film sul divano con Petta e mamma' },
+        { file: 'giocare_con_la_neve_con_flo_e_silvi.jpg', name: 'Giocare con la neve con Flo e Cuch' },
+        { file: 'giocare_con_mia_e_matteo.jpg', name: 'Giocare con la Mia e Matteo' },
+        { file: 'lunghe_chiacchiere_con_silvi.jpg', name: 'Lunghe chiacchiere con Cuch' },
+        { file: 'mercato_con_nonna_e_nonno.jpg', name: 'Giri al mercato con nonna e nonno' },
+        { file: 'parigi_con_mamma.jpg', name: 'Parigi con la mamma' },
+        { file: 'passeggiate_percorso_natura_con_papa.jpg', name: 'Passeggiate nel percorso natura con il papà' },
+        { file: 'portogallo_con_petta.jpg', name: 'Portogallo con Petta' },
+        { file: 'primo_bacio_con_petta.jpg', name: 'Primo bacio con Petta' },
+        { file: 'risate_con_flo.jpg', name: 'Tante risate con Flo' },
+        { file: 'santorini_con_mamma.jpg', name: 'Santorini con la mamma' },
+        { file: 'scuola_guida_con_zio_ben.jpg', name: 'Scuola guida con lo zio Ben' },
+        { file: 'spiaggia_con_famiglia.jpg', name: 'Spiaggia con tutta la famiglia' },
+        { file: 'toscana_con_mamma_e_silvi.jpg', name: 'Toscana con la mamma e Cuch' },
+        { file: 'viaggio_maturita_con_amiche.jpg', name: 'Viaggio di Maturità con le amiche' }
+      ]
     }
   };
 
