@@ -591,6 +591,263 @@
         { file: 'toscana_con_mamma_e_silvi.jpg', name: 'Toscana con la mamma e Cuch' },
         { file: 'viaggio_maturita_con_amiche.jpg', name: 'Viaggio di Maturità con le amiche' }
       ]
+    },
+
+    locandina_film: {
+      title: 'Locandina Film Più Bella',
+      emoji: '🖼️',
+      description: 'Qual è la locandina di film più bella di sempre? Scegli la tua preferita ad ogni sfida fino alla finale.',
+      folder: 'assets/images/locandine_film',
+      items: [
+        { file: 'pulp_fiction.jpg', name: 'Pulp Fiction' },
+        { file: 'il_silenzio_degli_innocenti.jpg', name: 'Il Silenzio degli Innocenti' },
+        { file: 'forrest_gump.jpg', name: 'Forrest Gump' },
+        { file: 'interstellar.jpg', name: 'Interstellar' },
+        { file: 'lo_squalo.jpg', name: 'Jaws - Lo Squalo' },
+        { file: 'cera_una_volta_in_america.jpg', name: 'C\'era una volta in America' },
+        { file: 'the_dark_knight.jpg', name: 'The Dark Knight' },
+        { file: 'star_wars_una_nuova_speranza.jpg', name: 'Star Wars: Episodio IV - Una Nuova Speranza' },
+        { file: 'et_extraterrestre.jpg', name: "E.T. l'Extra-Terrestre" },
+        { file: 'ritorno_al_futuro.jpg', name: 'Ritorno al Futuro' },
+        { file: 'avatar.jpg', name: 'Avatar' },
+        { file: 'fight_club.jpg', name: 'Fight Club' },
+        { file: 'truman_show.jpg', name: 'The Truman Show' },
+        { file: 'get_out.jpg', name: 'Get Out' },
+        { file: 'indiana_jones.jpg', name: 'Indiana Jones' },
+        { file: 'shining.jpg', name: 'Shining' },
+        { file: 'la_la_land.jpg', name: 'La La Land' },
+        { file: 'joker.jpg', name: 'Joker' },
+        { file: 'ghostbusters.jpg', name: 'Ghostbusters' },
+        { file: 'jurassic_park.jpg', name: 'Jurassic Park' },
+        { file: 'american_beauty.jpg', name: 'American Beauty' }
+      ]
+    },
+
+    film_piu_bello: {
+      title: 'Film Più Bello',
+      emoji: '🎥',
+      description: 'Qual è il film più bello di sempre? Scegli il tuo preferito ad ogni sfida fino alla finale.',
+      folder: 'assets/images/film_piu_bello',
+      items: [
+        { file: 'seven.jpg', name: 'Seven' },
+        { file: 'sette_anime.jpg', name: 'Sette Anime' },
+        { file: 'fight_club.jpg', name: 'Fight Club' },
+        { file: 'oldboy.jpg', name: 'Oldboy' },
+        { file: 'shutter_island.jpg', name: 'Shutter Island' },
+        { file: 'one_day.jpg', name: 'One Day' },
+        { file: 'the_notebook.jpg', name: 'The Notebook - Le Pagine della Nostra Vita' },
+        { file: 'the_prestige.jpg', name: 'The Prestige' },
+        { file: 'truman_show.jpg', name: 'The Truman Show' },
+        { file: 'la_ricerca_della_felicita.jpg', name: 'La Ricerca della Felicità' },
+        { file: 'la_vita_e_bella.jpg', name: 'La Vita è Bella' },
+        { file: 'a_beautiful_mind.jpg', name: 'A Beautiful Mind' },
+        { file: 'manchester_by_the_sea.jpg', name: 'Manchester by the Sea' },
+        { file: 'il_pianista.jpg', name: 'Il Pianista' },
+        { file: 'leon.jpg', name: 'Léon' },
+        { file: 'will_hunting.jpg', name: 'Will Hunting - Genio Ribelle' },
+        { file: 'animali_notturni.jpg', name: 'Animali Notturni' },
+        { file: 'gladiator.jpg', name: 'Il Gladiatore' }
+      ]
+    },
+
+    sensazioni: {
+      title: 'La Sensazione Più Appagante',
+      emoji: '✨',
+      description: 'Qual è la sensazione più appagante in assoluto? Scegli la tua preferita ad ogni sfida fino alla finale.',
+      folder: 'assets/images/sensazioni',
+      items: [
+        { file: 'lenzuola_pulite.jpg', name: 'Lenzuola pulite appena messe' },
+        { file: 'togliersi_le_scarpe.jpg', name: 'Togliersi le scarpe strette dopo una lunga giornata' },
+        { file: 'pioggia_sotto_il_piumone.jpg', name: 'La pioggia fuori mentre sei al caldo sotto il piumone' },
+        { file: 'doccia_calda.jpg', name: 'La doccia calda dopo una giornata devastante' },
+        { file: 'svegliarsi_di_sabato.jpg', name: 'Svegliarsi e capire che è sabato' },
+        { file: 'sorso_acqua_dopo_corsa.jpg', name: "Un sorso d'acqua dopo una lunga corsa" },
+        { file: 'treno_in_arrivo.jpg', name: 'Il treno/bus che arriva proprio mentre arrivi tu' },
+        { file: 'primo_sorso_di_caffe.jpg', name: 'Il primo sorso di caffè al mattino' },
+        { file: 'stiracchiarsi_al_risveglio.jpg', name: 'Stiracchiarsi appena svegli' },
+        { file: 'scrocchiarsi_le_dita.jpg', name: 'Scrocchiarsi le dita' },
+        { file: 'togliere_pellicola_protettiva.jpg', name: 'Togliere la pellicola protettiva da un oggetto nuovo' },
+        { file: 'buttarsi_sul_divano.jpg', name: 'Buttarsi sul divano dopo una giornata pesante' },
+        { file: 'trovare_parcheggio_subito.jpg', name: 'Trovare parcheggio subito sotto casa' },
+        { file: 'silenzio_dopo_rumore.jpg', name: 'Il silenzio dopo che finisce un rumore fastidioso' },
+        { file: 'doccia_dopo_mare.jpg', name: 'Togliersi la sabbia sotto la doccia dopo il mare' },
+        { file: 'sole_caldo_in_inverno.jpg', name: 'Il sole caldo sulla pelle in una giornata fredda' }
+      ]
+    },
+
+    materie_scolastiche: {
+      title: 'Materie Scolastiche',
+      emoji: '📚',
+      description: 'Qual è la materia scolastica più bella di sempre? Scegli la tua preferita ad ogni sfida fino alla finale.',
+      folder: 'assets/images/materie_scolastiche',
+      items: [
+        { file: 'matematica.jpg', name: 'Matematica' },
+        { file: 'educazione_fisica.jpg', name: 'Educazione Fisica' },
+        { file: 'storia.jpg', name: 'Storia' },
+        { file: 'chimica.jpg', name: 'Chimica' },
+        { file: 'filosofia.jpg', name: 'Filosofia' },
+        { file: 'latino.jpg', name: 'Latino' },
+        { file: 'italiano.jpg', name: 'Italiano' },
+        { file: 'inglese.jpg', name: 'Inglese' },
+        { file: 'fisica.jpg', name: 'Fisica' },
+        { file: 'biologia.jpg', name: 'Biologia' },
+        { file: 'arte.jpg', name: 'Arte' },
+        { file: 'geografia.jpg', name: 'Geografia' },
+        { file: 'scienze.jpg', name: 'Scienze' },
+        { file: 'musica.jpg', name: 'Musica' },
+        { file: 'informatica.jpg', name: 'Informatica' },
+        { file: 'greco.jpg', name: 'Greco' }
+      ]
+    },
+
+    sensazioni_fastidiose: {
+      title: 'La Sensazione Più Fastidiosa',
+      emoji: '😩',
+      description: 'Qual è la sensazione più fastidiosa in assoluto? Scegli quella che ti dà più fastidio ad ogni sfida fino alla finale.',
+      folder: 'assets/images/sensazioni_fastidiose',
+      items: [
+        { file: 'sveglia_sul_piu_bello.jpg', name: 'La sveglia che suona sul più bello' },
+        { file: 'sabbia_nei_calzini.jpg', name: 'La sabbia nei calzini' },
+        { file: 'calpestare_un_lego.jpg', name: 'Calpestare un Lego a piedi nudi' },
+        { file: 'popup_pubblicitario.jpg', name: 'Il pop-up pubblicitario intoccabile' },
+        { file: 'cellulare_scarico.jpg', name: 'Il cellulare che si scarica proprio quando serve' },
+        { file: 'wifi_che_cade.jpg', name: 'Il Wi-Fi che cade nel momento sbagliato' },
+        { file: 'unghia_rotta.jpg', name: "Un'unghia che si rompe storta" },
+        { file: 'unghie_sulla_lavagna.jpg', name: 'Il rumore delle unghie sulla lavagna' },
+        { file: 'suoneria_alta_in_silenzio.jpg', name: 'Restare con la suoneria alta in un luogo silenzioso' },
+        { file: 'cuffie_aggrovigliate.jpg', name: 'Il filo delle cuffie che si aggroviglia' },
+        { file: 'mordersi_la_lingua.jpg', name: 'Mordersi la lingua mangiando' },
+        { file: 'colpo_al_gomito.jpg', name: "Prendersi un colpo sull'osso del gomito" },
+        { file: 'carta_igienica_finita.jpg', name: 'La carta igienica finita proprio quando serve' },
+        { file: 'telefono_caduto_schermo_giu.jpg', name: 'Il telefono che cade con lo schermo verso il basso' },
+        { file: 'carrello_lento_al_supermercato.jpg', name: 'Restare bloccati dietro un carrello lento al supermercato' },
+        { file: 'tergicristallo_che_stride.jpg', name: 'Il tergicristallo che stride sul vetro asciutto' }
+      ]
+    },
+
+    odore_piu_buono: {
+      title: "L'Odore Più Buono",
+      emoji: '🌿',
+      description: "Qual è l'odore più buono del mondo? Scegli il tuo preferito ad ogni sfida fino alla finale.",
+      folder: 'assets/images/odore_piu_buono',
+      items: [
+        { file: 'caffe_al_mattino.jpg', name: 'Caffè al mattino' },
+        { file: 'pioggia_sull_asfalto.jpg', name: "Pioggia sull'asfalto (petricore)" },
+        { file: 'libro_nuovo.jpg', name: 'Libro nuovo' },
+        { file: 'pane_appena_sfornato.jpg', name: 'Pane appena sfornato' },
+        { file: 'benzina.jpg', name: 'Benzina' },
+        { file: 'erba_tagliata.jpg', name: 'Erba tagliata' },
+        { file: 'vaniglia.jpg', name: 'Vaniglia' },
+        { file: 'cioccolato_fondente.jpg', name: 'Cioccolato fondente' },
+        { file: 'mare.jpg', name: 'Mare' },
+        { file: 'lavanda.jpg', name: 'Lavanda' },
+        { file: 'biscotti_al_forno.jpg', name: 'Biscotti appena sfornati' },
+        { file: 'agrumi_freschi.jpg', name: 'Agrumi freschi' },
+        { file: 'foglie_autunnali.jpg', name: 'Foglie autunnali' },
+        { file: 'camino_acceso.jpg', name: 'Camino acceso' },
+        { file: 'colonia_dopobarba.jpg', name: 'Colonia dopobarba' },
+        { file: 'bucato_appena_stirato.jpg', name: 'Bucato appena stirato' }
+      ]
+    },
+
+    coppie_bromance: {
+      title: 'La Coppia/Bromance Più Bella',
+      emoji: '🤝',
+      description: 'Qual è la coppia o bromance più bella di film e serie TV? Scegli la tua preferita ad ogni sfida fino alla finale.',
+      folder: 'assets/images/coppie_bromance',
+      items: [
+        { file: 'woody_e_buzz.jpg', name: 'Woody e Buzz' },
+        { file: 'sherlock_e_watson.jpg', name: 'Sherlock Holmes e Watson' },
+        { file: 'jd_e_turk.jpg', name: 'JD e Turk' },
+        { file: 'han_solo_e_chewbacca.jpg', name: 'Han Solo e Chewbacca' },
+        { file: 'lilo_e_stitch.jpg', name: 'Lilo e Stitch' },
+        { file: 'frodo_e_sam.jpg', name: 'Frodo e Sam' },
+        { file: 'batman_e_robin.jpg', name: 'Batman e Robin' },
+        { file: 'mario_e_luigi.jpg', name: 'Mario e Luigi' },
+        { file: 'walter_e_jesse.jpg', name: 'Walter e Jesse' },
+        { file: 'goku_e_vegeta.jpg', name: 'Goku e Vegeta' },
+        { file: 'timon_e_pumba.jpg', name: 'Timon e Pumba' },
+        { file: 'shrek_e_ciuchino.jpg', name: 'Shrek e Ciuchino' },
+        { file: 'spongebob_e_patrick.jpg', name: 'Spongebob e Patrick' },
+        { file: 'nana_e_yasu.jpg', name: 'Nana e Yasu' },
+        { file: 'light_e_l.jpg', name: 'Light e L' },
+        { file: 'tom_e_jerry.jpg', name: 'Tom e Jerry' }
+      ]
+    },
+
+    cucine_nazionali: {
+      title: 'La Cucina Nazionale Più Buona',
+      emoji: '🍲',
+      description: 'Qual è la cucina nazionale più buona al mondo? Scegli la tua preferita ad ogni sfida fino alla finale.',
+      folder: 'assets/images/cucine_nazionali',
+      items: [
+        { file: 'cucina_italiana.jpg', name: 'Cucina Italiana' },
+        { file: 'cucina_giapponese.jpg', name: 'Cucina Giapponese' },
+        { file: 'cucina_messicana.jpg', name: 'Cucina Messicana' },
+        { file: 'cucina_indiana.jpg', name: 'Cucina Indiana' },
+        { file: 'cucina_thailandese.jpg', name: 'Cucina Thailandese' },
+        { file: 'cucina_greca.jpg', name: 'Cucina Greca' },
+        { file: 'cucina_francese.jpg', name: 'Cucina Francese' },
+        { file: 'cucina_spagnola.jpg', name: 'Cucina Spagnola' },
+        { file: 'cucina_cinese.jpg', name: 'Cucina Cinese' },
+        { file: 'cucina_coreana.jpg', name: 'Cucina Coreana' },
+        { file: 'cucina_vietnamita.jpg', name: 'Cucina Vietnamita' },
+        { file: 'cucina_libanese.jpg', name: 'Cucina Libanese' },
+        { file: 'cucina_peruviana.jpg', name: 'Cucina Peruviana' },
+        { file: 'cucina_turca.jpg', name: 'Cucina Turca' },
+        { file: 'cucina_marocchina.jpg', name: 'Cucina Marocchina' },
+        { file: 'cucina_statunitense.jpg', name: 'Cucina Statunitense' }
+      ]
+    },
+
+    invenzioni: {
+      title: "L'Invenzione Più Importante",
+      emoji: '💡',
+      description: "Qual è l'invenzione dell'umanità più importante di sempre? Scegli la tua preferita ad ogni sfida fino alla finale.",
+      folder: 'assets/images/invenzioni',
+      items: [
+        { file: 'internet.jpg', name: 'Internet' },
+        { file: 'la_ruota.jpg', name: 'La Ruota' },
+        { file: 'aria_condizionata.jpg', name: "L'Aria Condizionata" },
+        { file: 'corrente_elettrica.jpg', name: 'La Corrente Elettrica' },
+        { file: 'antibiotici.jpg', name: 'Gli Antibiotici' },
+        { file: 'stampa_a_caratteri_mobili.jpg', name: 'La Stampa a Caratteri Mobili' },
+        { file: 'telefono.jpg', name: 'Il Telefono' },
+        { file: 'lampadina.jpg', name: 'La Lampadina' },
+        { file: 'motore_a_combustione.jpg', name: 'Il Motore a Combustione' },
+        { file: 'vaccini.jpg', name: 'I Vaccini' },
+        { file: 'scrittura.jpg', name: 'La Scrittura' },
+        { file: 'frigorifero.jpg', name: 'Il Frigorifero' },
+        { file: 'aeroplano.jpg', name: "L'Aeroplano" },
+        { file: 'bussola.jpg', name: 'La Bussola' },
+        { file: 'computer.jpg', name: 'Il Computer' },
+        { file: 'carta.jpg', name: 'La Carta' }
+      ]
+    },
+
+    animali_maestosi: {
+      title: 'L\'Animale Più Bello',
+      emoji: '🦅',
+      description: "Qual è l'animale più bello e maestoso in assoluto? Scegli il tuo preferito ad ogni sfida fino alla finale.",
+      folder: 'assets/images/animali_maestosi',
+      items: [
+        { file: 'lupo.jpg', name: 'Lupo' },
+        { file: 'aquila.jpg', name: 'Aquila' },
+        { file: 'leone.jpg', name: 'Leone' },
+        { file: 'orca.jpg', name: 'Orca' },
+        { file: 'tigre.jpg', name: 'Tigre' },
+        { file: 'gufo.jpg', name: 'Gufo' },
+        { file: 'cavallo.jpg', name: 'Cavallo' },
+        { file: 'elefante.jpg', name: 'Elefante' },
+        { file: 'pantera.jpg', name: 'Pantera' },
+        { file: 'orso.jpg', name: 'Orso' },
+        { file: 'falco.jpg', name: 'Falco' },
+        { file: 'delfino.jpg', name: 'Delfino' },
+        { file: 'giaguaro.jpg', name: 'Giaguaro' },
+        { file: 'cigno.jpg', name: 'Cigno' },
+        { file: 'ghepardo.jpg', name: 'Ghepardo' },
+        { file: 'volpe_artica.jpg', name: 'Volpe Artica' }
+      ]
     }
   };
 
