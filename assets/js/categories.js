@@ -30,7 +30,17 @@
         { file: 'risotto_alla_milanese.jpg', name: 'Risotto alla Milanese' },
         { file: 'tiramisu.jpg', name: 'Tiramisù' },
         { file: 'tortellini.jpg', name: 'Tortellini' },
-        { file: 'vitello_tonnato.jpg', name: 'Vitello Tonnato' }
+        { file: 'vitello_tonnato.jpg', name: 'Vitello Tonnato' },
+        { file: 'pesto_genovese.jpg', name: 'Pesto alla Genovese' },
+        { file: 'ossobuco.jpg', name: 'Ossobuco' },
+        { file: 'bruschetta.jpg', name: 'Bruschetta' },
+        { file: 'panzerotti.jpg', name: 'Panzerotti' },
+        { file: 'suppli.jpg', name: 'Supplì' },
+        { file: 'trippa_alla_romana.jpg', name: 'Trippa alla Romana' },
+        { file: 'bagna_cauda.jpg', name: 'Bagna Cauda' },
+        { file: 'polenta.jpg', name: 'Polenta' },
+        { file: 'caprese.jpg', name: 'Caprese' },
+        { file: 'cotoletta_alla_milanese.jpg', name: 'Cotoletta alla Milanese' }
       ]
     },
 
@@ -63,7 +73,17 @@
         { file: 'scarlett_johannson.jpg', name: 'Scarlett Johansson' },
         { file: 'sidney_sweeney.jpg', name: 'Sydney Sweeney' },
         { file: 'taylor_hill.jpg', name: 'Taylor Hill' },
-        { file: 'zendaya.jpg', name: 'Zendaya' }
+        { file: 'zendaya.jpg', name: 'Zendaya' },
+        { file: 'millie_bobby_brown.jpg', name: 'Millie Bobby Brown' },
+        { file: 'selena_gomez.jpg', name: 'Selena Gomez' },
+        { file: 'ariana_grande.jpg', name: 'Ariana Grande' },
+        { file: 'blake_lively.jpg', name: 'Blake Lively' },
+        { file: 'jennifer_lawrence.jpg', name: 'Jennifer Lawrence' },
+        { file: 'priyanka_chopra.jpg', name: 'Priyanka Chopra' },
+        { file: 'camila_cabello.jpg', name: 'Camila Cabello' },
+        { file: 'hailey_bieber.jpg', name: 'Hailey Bieber' },
+        { file: 'bella_hadid.jpg', name: 'Bella Hadid' },
+        { file: 'sofia_vergara.jpg', name: 'Sofia Vergara' }
       ]
     },
 
@@ -88,7 +108,17 @@
         { file: 'robert_pattinson.jpg', name: 'Robert Pattinson' },
         { file: 'ryan_gosling.jpg', name: 'Ryan Gosling' },
         { file: 'the_rock.jpg', name: 'The Rock' },
-        { file: 'zac_efron.jpg', name: 'Zac Efron' }
+        { file: 'zac_efron.jpg', name: 'Zac Efron' },
+        { file: 'timothee_chalamet.jpg', name: 'Timothée Chalamet' },
+        { file: 'tom_holland.jpg', name: 'Tom Holland' },
+        { file: 'chris_evans.jpg', name: 'Chris Evans' },
+        { file: 'idris_elba.jpg', name: 'Idris Elba' },
+        { file: 'keanu_reeves.jpg', name: 'Keanu Reeves' },
+        { file: 'will_smith.jpg', name: 'Will Smith' },
+        { file: 'denzel_washington.jpg', name: 'Denzel Washington' },
+        { file: 'cristiano_ronaldo.jpg', name: 'Cristiano Ronaldo' },
+        { file: 'harry_styles.jpg', name: 'Harry Styles' },
+        { file: 'tom_hardy.jpg', name: 'Tom Hardy' }
       ]
     },
 
@@ -113,7 +143,17 @@
         { file: 'shrek.jpg', name: 'Shrek' },
         { file: 'tarzan.jpg', name: 'Tarzan' },
         { file: 'toy_story.jpg', name: 'Toy Story' },
-        { file: 'wall_e.jpg', name: 'WALL-E' }
+        { file: 'wall_e.jpg', name: 'WALL-E' },
+        { file: 'frozen.jpg', name: 'Frozen' },
+        { file: 'coco.jpg', name: 'Coco' },
+        { file: 'up.jpg', name: 'Up' },
+        { file: 'inside_out.jpg', name: 'Inside Out' },
+        { file: 'zootropolis.jpg', name: 'Zootropolis' },
+        { file: 'big_hero_6.jpg', name: 'Big Hero 6' },
+        { file: 'moana.jpg', name: 'Moana' },
+        { file: 'encanto.jpg', name: 'Encanto' },
+        { file: 'la_sirenetta.jpg', name: 'La Sirenetta' },
+        { file: 'wreck_it_ralph.jpg', name: 'Wreck-It Ralph' }
       ]
     },
 
@@ -138,7 +178,17 @@
         { file: 'stranger_things.jpg', name: 'Stranger Things' },
         { file: 'the_boys.jpg', name: 'The Boys' },
         { file: 'the_office.jpg', name: 'The Office' },
-        { file: 'the_walking_dead.jpg', name: 'The Walking Dead' }
+        { file: 'the_walking_dead.jpg', name: 'The Walking Dead' },
+        { file: 'narcos.jpg', name: 'Narcos' },
+        { file: 'sherlock.jpg', name: 'Sherlock' },
+        { file: 'la_casa_di_carta.jpg', name: 'La Casa di Carta' },
+        { file: 'suits.jpg', name: 'Suits' },
+        { file: 'prison_break.jpg', name: 'Prison Break' },
+        { file: 'vikings.jpg', name: 'Vikings' },
+        { file: 'the_crown.jpg', name: 'The Crown' },
+        { file: 'sex_education.jpg', name: 'Sex Education' },
+        { file: 'wednesday.jpg', name: 'Wednesday' },
+        { file: 'you.jpg', name: 'YOU' }
       ]
     },
 
@@ -183,7 +233,17 @@
         { file: 'tokyo_ghoul.jpg', name: 'Tokyo Ghoul' },
         { file: 'vinland_saga.jpg', name: 'Vinland Saga' },
         { file: 'your_name.jpg', name: 'Your Name' },
-        { file: 'yu_yu_hakusho.jpg', name: 'YuYu Hakusho' }
+        { file: 'yu_yu_hakusho.jpg', name: 'YuYu Hakusho' },
+        { file: 'spy_x_family.jpg', name: 'Spy x Family' },
+        { file: 'fruits_basket.jpg', name: 'Fruits Basket' },
+        { file: 'steins_gate.jpg', name: 'Steins;Gate' },
+        { file: 're_zero.jpg', name: 'Re:Zero' },
+        { file: 'mob_psycho_100.jpg', name: 'Mob Psycho 100' },
+        { file: 'violet_evergarden.jpg', name: 'Violet Evergarden' },
+        { file: 'cowboy_bebop.jpg', name: 'Cowboy Bebop' },
+        { file: 'sailor_moon.jpg', name: 'Sailor Moon' },
+        { file: 'evangelion.jpg', name: 'Evangelion' },
+        { file: 'fairy_tail.jpg', name: 'Fairy Tail' }
       ]
     },
 
@@ -217,7 +277,17 @@
         { file: 'pesca.jpg', name: 'Pesca' },
         { file: 'pompelmo.jpg', name: 'Pompelmo' },
         { file: 'prugna.jpg', name: 'Prugna' },
-        { file: 'uva.jpg', name: 'Uva' }
+        { file: 'uva.jpg', name: 'Uva' },
+        { file: 'cachi.jpg', name: 'Cachi' },
+        { file: 'nespola.jpg', name: 'Nespola' },
+        { file: 'litchi.jpg', name: 'Litchi' },
+        { file: 'papaya.jpg', name: 'Papaya' },
+        { file: 'carambola.jpg', name: 'Carambola' },
+        { file: 'ribes.jpg', name: 'Ribes' },
+        { file: 'datteri.jpg', name: 'Datteri' },
+        { file: 'mandarino.jpg', name: 'Mandarino' },
+        { file: 'guava.jpg', name: 'Guava' },
+        { file: 'amarena.jpg', name: 'Amarena' }
       ]
     },
 
@@ -242,7 +312,15 @@
         { file: 'scoglio.jpg', name: 'Pasta allo Scoglio' },
         { file: 'sorrentina.jpg', name: 'Pasta alla Sorrentina' },
         { file: 'tonno.jpg', name: 'Pasta al Tonno' },
-        { file: 'vongole.jpg', name: 'Vongole' }
+        { file: 'vongole.jpg', name: 'Vongole' },
+        { file: 'pasta_al_pomodoro.jpg', name: 'Pasta al Pomodoro' },
+        { file: 'pasta_alla_boscaiola.jpg', name: 'Pasta alla Boscaiola' },
+        { file: 'pasta_e_patate.jpg', name: 'Pasta e Patate' },
+        { file: 'genovese_napoletana.jpg', name: 'Genovese Napoletana' },
+        { file: 'spaghetti_allo_scarpariello.jpg', name: 'Spaghetti allo Scarpariello' },
+        { file: 'pasta_con_le_sarde.jpg', name: 'Pasta con le Sarde' },
+        { file: 'pasta_alla_zozzona.jpg', name: 'Pasta alla Zozzona' },
+        { file: 'cacio_e_ova.jpg', name: 'Cacio e Ova' }
       ]
     },
 
@@ -271,7 +349,13 @@
         { file: 'tartufo.jpg', name: 'Tartufo' },
         { file: 'vaniglia.jpg', name: 'Vaniglia' },
         { file: 'vernice_fresca.jpg', name: 'Vernice Fresca' },
-        { file: 'zucchero_filato.jpg', name: 'Zucchero Filato' }
+        { file: 'zucchero_filato.jpg', name: 'Zucchero Filato' },
+        { file: 'cuoio.jpg', name: 'Cuoio' },
+        { file: 'incenso.jpg', name: 'Incenso' },
+        { file: 'rosa.jpg', name: 'Rosa' },
+        { file: 'muschio_bianco.jpg', name: 'Muschio Bianco' },
+        { file: 'sale_marino.jpg', name: 'Sale Marino' },
+        { file: 'fieno_tagliato.jpg', name: 'Fieno Appena Tagliato' }
       ]
     },
 
@@ -297,7 +381,15 @@
         { file: 'peperoncini.jpg', name: 'Peperoncini' },
         { file: 'peperoni.jpg', name: 'Peperoni' },
         { file: 'pomodori.jpg', name: 'Pomodori' },
-        { file: 'zucchine.jpg', name: 'Zucchine' }
+        { file: 'zucchine.jpg', name: 'Zucchine' },
+        { file: 'cavolfiore.jpg', name: 'Cavolfiore' },
+        { file: 'cavolo_nero.jpg', name: 'Cavolo Nero' },
+        { file: 'spinaci.jpg', name: 'Spinaci' },
+        { file: 'rucola.jpg', name: 'Rucola' },
+        { file: 'sedano.jpg', name: 'Sedano' },
+        { file: 'rapanelli.jpg', name: 'Rapanelli' },
+        { file: 'porri.jpg', name: 'Porri' },
+        { file: 'bietole.jpg', name: 'Bietole' }
       ]
     },
 
@@ -324,7 +416,15 @@
         { file: 'prosciutto_melone.jpg', name: 'Prosciutto e Melone' },
         { file: 'salmone_avocado.jpg', name: 'Salmone e Avocado' },
         { file: 'spritz_patatine.jpg', name: 'Spritz e Patatine' },
-        { file: 'uova_asparagi.jpg', name: 'Uova e Asparagi' }
+        { file: 'uova_asparagi.jpg', name: 'Uova e Asparagi' },
+        { file: 'fragole_e_cioccolato.jpg', name: 'Fragole e Cioccolato' },
+        { file: 'vino_e_formaggio.jpg', name: 'Vino e Formaggio' },
+        { file: 'riso_e_fagioli.jpg', name: 'Riso e Fagioli' },
+        { file: 'toast_e_marmellata.jpg', name: 'Toast e Marmellata' },
+        { file: 'nutella_e_banana.jpg', name: 'Nutella e Banana' },
+        { file: 'pancake_e_sciroppo_acero.jpg', name: "Pancake e Sciroppo d'Acero" },
+        { file: 'gin_tonic_e_olive.jpg', name: 'Gin Tonic e Olive' },
+        { file: 'patatine_e_ketchup.jpg', name: 'Patatine e Ketchup' }
       ]
     },
 
@@ -378,7 +478,17 @@
         { file: 'petra.jpg', name: 'Petra' },
         { file: 'rio_de_janeiro.jpg', name: 'Rio de Janeiro' },
         { file: 'santorini.jpg', name: 'Santorini' },
-        { file: 'tokyo.jpg', name: 'Tokyo' }
+        { file: 'tokyo.jpg', name: 'Tokyo' },
+        { file: 'parigi.jpg', name: 'Parigi' },
+        { file: 'barcellona.jpg', name: 'Barcellona' },
+        { file: 'marrakech.jpg', name: 'Marrakech' },
+        { file: 'bali.jpg', name: 'Bali' },
+        { file: 'sydney.jpg', name: 'Sydney' },
+        { file: 'amsterdam.jpg', name: 'Amsterdam' },
+        { file: 'praga.jpg', name: 'Praga' },
+        { file: 'venezia.jpg', name: 'Venezia' },
+        { file: 'machu_picchu.jpg', name: 'Machu Picchu' },
+        { file: 'cape_town.jpg', name: 'Cape Town' }
       ]
     },
 
@@ -405,7 +515,13 @@
         { file: 'supervelocita.jpg', name: 'Supervelocità' },
         { file: 'telecinesi.jpg', name: 'Telecinesi' },
         { file: 'teletrasporto.jpg', name: 'Teletrasporto' },
-        { file: 'volare.jpg', name: 'Volare' }
+        { file: 'volare.jpg', name: 'Volare' },
+        { file: 'controllo_gravita.jpg', name: 'Controllo della Gravità' },
+        { file: 'immortalita.jpg', name: 'Immortalità' },
+        { file: 'trasformazione_animale.jpg', name: 'Trasformazione in Animale' },
+        { file: 'assorbire_poteri.jpg', name: 'Assorbire Poteri' },
+        { file: 'controllo_ghiaccio.jpg', name: 'Controllo del Ghiaccio' },
+        { file: 'camminare_sullacqua.jpg', name: "Camminare sull'Acqua" }
       ]
     },
 
@@ -450,7 +566,17 @@
         { file: 'san_bernardo.jpg', name: 'San Bernardo' },
         { file: 'sharpei.jpg', name: 'Shar Pei' },
         { file: 'shiba_inu.jpg', name: 'Shiba Inu' },
-        { file: 'yorkshire_terrier.jpg', name: 'Yorkshire Terrier' }
+        { file: 'yorkshire_terrier.jpg', name: 'Yorkshire Terrier' },
+        { file: 'weimaraner.jpg', name: 'Weimaraner' },
+        { file: 'alaskan_malamute.jpg', name: 'Alaskan Malamute' },
+        { file: 'setter_inglese.jpg', name: 'Setter Inglese' },
+        { file: 'jack_russell_terrier.jpg', name: 'Jack Russell Terrier' },
+        { file: 'maltese.jpg', name: 'Maltese' },
+        { file: 'pointer.jpg', name: 'Pointer' },
+        { file: 'segugio.jpg', name: 'Segugio' },
+        { file: 'volpino_di_pomerania.jpg', name: 'Volpino di Pomerania' },
+        { file: 'whippet.jpg', name: 'Whippet' },
+        { file: 'schnauzer.jpg', name: 'Schnauzer' }
       ]
     },
 
@@ -475,7 +601,15 @@
         { file: 'ruote.jpg', name: 'Ruote' },
         { file: 'spaghetti.jpg', name: 'Spaghetti' },
         { file: 'tagliatelle.jpg', name: 'Tagliatelle' },
-        { file: 'tortellini.jpg', name: 'Tortellini' }
+        { file: 'tortellini.jpg', name: 'Tortellini' },
+        { file: 'bucatini.jpg', name: 'Bucatini' },
+        { file: 'trofie.jpg', name: 'Trofie' },
+        { file: 'paccheri.jpg', name: 'Paccheri' },
+        { file: 'pizzoccheri.jpg', name: 'Pizzoccheri' },
+        { file: 'trenette.jpg', name: 'Trenette' },
+        { file: 'anelletti.jpg', name: 'Anelletti' },
+        { file: 'strozzapreti.jpg', name: 'Strozzapreti' },
+        { file: 'cavatelli.jpg', name: 'Cavatelli' }
       ]
     },
 
@@ -500,7 +634,15 @@
         { file: 'shoji.jpg', name: 'Shoji' },
         { file: 'takashi.jpg', name: 'Takashi' },
         { file: 'takumi.jpg', name: 'Takumi' },
-        { file: 'yasu.jpg', name: 'Yasu' }
+        { file: 'yasu.jpg', name: 'Yasu' },
+        { file: 'miu_shinoda.jpg', name: 'Miu Shinoda' },
+        { file: 'ren_ichinose.jpg', name: 'Ren Ichinose' },
+        { file: 'satsuki_ichinose.jpg', name: 'Satsuki Ichinose' },
+        { file: 'takafumi_kawano.jpg', name: 'Takafumi Kawano' },
+        { file: 'asami_matsumoto.jpg', name: 'Asami Matsumoto' },
+        { file: 'megumi_ichinose.jpg', name: 'Megumi Ichinose' },
+        { file: 'layla_serizawa.jpg', name: 'Layla Serizawa' },
+        { file: 'yoshiyuki_arai.jpg', name: 'Yoshiyuki Arai' }
       ]
     },
 
@@ -534,7 +676,17 @@
         { file: 'stella_mccartney.jpg', name: 'Stella McCartney' },
         { file: 'valentino.jpg', name: 'Valentino' },
         { file: 'versace.jpg', name: 'Versace' },
-        { file: 'yves_saint_laurent.jpg', name: 'Yves Saint Laurent' }
+        { file: 'yves_saint_laurent.jpg', name: 'Yves Saint Laurent' },
+        { file: 'balenciaga.jpg', name: 'Balenciaga' },
+        { file: 'givenchy.jpg', name: 'Givenchy' },
+        { file: 'alexander_mcqueen.jpg', name: 'Alexander McQueen' },
+        { file: 'miu_miu.jpg', name: 'Miu Miu' },
+        { file: 'loewe.jpg', name: 'Loewe' },
+        { file: 'celine.jpg', name: 'Celine' },
+        { file: 'balmain.jpg', name: 'Balmain' },
+        { file: 'vivienne_westwood.jpg', name: 'Vivienne Westwood' },
+        { file: 'tommy_hilfiger.jpg', name: 'Tommy Hilfiger' },
+        { file: 'calvin_klein.jpg', name: 'Calvin Klein' }
       ]
     },
 
@@ -561,7 +713,15 @@
         { file: 'sumo.jpg', name: 'Sumo' },
         { file: 'sushi.jpg', name: 'Sushi' },
         { file: 'tokyo_food_market.jpg', name: 'Mercato del Cibo di Tokyo' },
-        { file: 'toro_nagashi.jpg', name: 'Toro Nagashi' }
+        { file: 'toro_nagashi.jpg', name: 'Toro Nagashi' },
+        { file: 'ikebana.jpg', name: 'Ikebana' },
+        { file: 'origami.jpg', name: 'Origami' },
+        { file: 'calligrafia_giapponese.jpg', name: 'Calligrafia Giapponese (Shodo)' },
+        { file: 'pachinko.jpg', name: 'Pachinko' },
+        { file: 'purikura.jpg', name: 'Purikura' },
+        { file: 'hanami.jpg', name: 'Hanami' },
+        { file: 'capsule_hotel.jpg', name: 'Capsule Hotel' },
+        { file: 'kabuki.jpg', name: 'Kabuki' }
       ]
     },
 
@@ -619,7 +779,17 @@
         { file: 'joker.jpg', name: 'Joker' },
         { file: 'ghostbusters.jpg', name: 'Ghostbusters' },
         { file: 'jurassic_park.jpg', name: 'Jurassic Park' },
-        { file: 'american_beauty.jpg', name: 'American Beauty' }
+        { file: 'american_beauty.jpg', name: 'American Beauty' },
+        { file: 'titanic.jpg', name: 'Titanic' },
+        { file: 'il_padrino.jpg', name: 'Il Padrino' },
+        { file: 'matrix.jpg', name: 'Matrix' },
+        { file: 'pirati_dei_caraibi.jpg', name: 'Pirati dei Caraibi' },
+        { file: 'il_gladiatore.jpg', name: 'Il Gladiatore' },
+        { file: 'casino_royale.jpg', name: 'Casino Royale' },
+        { file: 'grease.jpg', name: 'Grease' },
+        { file: 'v_per_vendetta.jpg', name: 'V per Vendetta' },
+        { file: 'scarface.jpg', name: 'Scarface' },
+        { file: 'il_grande_lebowski.jpg', name: 'Il Grande Lebowski' }
       ]
     },
 
@@ -646,7 +816,15 @@
         { file: 'leon.jpg', name: 'Léon' },
         { file: 'will_hunting.jpg', name: 'Will Hunting - Genio Ribelle' },
         { file: 'animali_notturni.jpg', name: 'Animali Notturni' },
-        { file: 'gladiator.jpg', name: 'Il Gladiatore' }
+        { file: 'gladiator.jpg', name: 'Il Gladiatore' },
+        { file: 'le_ali_della_liberta.jpg', name: 'Le Ali della Libertà' },
+        { file: 'whiplash.jpg', name: 'Whiplash' },
+        { file: 'green_book.jpg', name: 'Green Book' },
+        { file: 'her.jpg', name: 'Her' },
+        { file: 'big_fish.jpg', name: 'Big Fish' },
+        { file: 'kill_bill.jpg', name: 'Kill Bill' },
+        { file: 'inception.jpg', name: 'Inception' },
+        { file: 'amelie.jpg', name: 'Amélie' }
       ]
     },
 
@@ -671,7 +849,13 @@
         { file: 'trovare_parcheggio_subito.jpg', name: 'Trovare parcheggio subito sotto casa' },
         { file: 'silenzio_dopo_rumore.jpg', name: 'Il silenzio dopo che finisce un rumore fastidioso' },
         { file: 'doccia_dopo_mare.jpg', name: 'Togliersi la sabbia sotto la doccia dopo il mare' },
-        { file: 'sole_caldo_in_inverno.jpg', name: 'Il sole caldo sulla pelle in una giornata fredda' }
+        { file: 'sole_caldo_in_inverno.jpg', name: 'Il sole caldo sulla pelle in una giornata fredda' },
+        { file: 'primo_tuffo_in_piscina.jpg', name: "Il primo tuffo in piscina d'estate" },
+        { file: 'ultimo_pezzo_di_torta.jpg', name: "Aprire il frigo e trovare l'ultimo pezzo di torta" },
+        { file: 'click_perfetto_incastro.jpg', name: 'Il click perfetto di un incastro' },
+        { file: 'sabbia_calda_sotto_i_piedi.jpg', name: 'La sabbia calda sotto i piedi' },
+        { file: 'pioggia_che_si_ferma.jpg', name: 'Il rumore della pioggia che si ferma' },
+        { file: 'letto_dalbergo_stirato.jpg', name: "Infilarsi in un letto d'albergo con lenzuola stirate" }
       ]
     },
 
@@ -696,7 +880,13 @@
         { file: 'scienze.jpg', name: 'Scienze' },
         { file: 'musica.jpg', name: 'Musica' },
         { file: 'informatica.jpg', name: 'Informatica' },
-        { file: 'greco.jpg', name: 'Greco' }
+        { file: 'greco.jpg', name: 'Greco' },
+        { file: 'religione.jpg', name: 'Religione' },
+        { file: 'diritto.jpg', name: 'Diritto' },
+        { file: 'economia.jpg', name: 'Economia' },
+        { file: 'disegno_tecnico.jpg', name: 'Disegno Tecnico' },
+        { file: 'spagnolo.jpg', name: 'Spagnolo' },
+        { file: 'francese.jpg', name: 'Francese' }
       ]
     },
 
@@ -721,7 +911,13 @@
         { file: 'carta_igienica_finita.jpg', name: 'La carta igienica finita proprio quando serve' },
         { file: 'telefono_caduto_schermo_giu.jpg', name: 'Il telefono che cade con lo schermo verso il basso' },
         { file: 'carrello_lento_al_supermercato.jpg', name: 'Restare bloccati dietro un carrello lento al supermercato' },
-        { file: 'tergicristallo_che_stride.jpg', name: 'Il tergicristallo che stride sul vetro asciutto' }
+        { file: 'tergicristallo_che_stride.jpg', name: 'Il tergicristallo che stride sul vetro asciutto' },
+        { file: 'rumore_masticazione.jpg', name: 'Il rumore di masticazione altrui' },
+        { file: 'caricatore_al_buio.jpg', name: 'Il cavo del caricatore che non entra al buio' },
+        { file: 'vicino_rumoroso.jpg', name: 'Il vicino che fa rumore di notte' },
+        { file: 'ingorgo_stradale.jpg', name: 'Rimanere incastrati in un ingorgo' },
+        { file: 'gomito_che_scivola.jpg', name: 'Il gomito che scivola dal tavolo' },
+        { file: 'foto_mossa.jpg', name: 'Autoscatto mosso dopo il countdown' }
       ]
     },
 
@@ -746,7 +942,13 @@
         { file: 'foglie_autunnali.jpg', name: 'Foglie autunnali' },
         { file: 'camino_acceso.jpg', name: 'Camino acceso' },
         { file: 'colonia_dopobarba.jpg', name: 'Colonia dopobarba' },
-        { file: 'bucato_appena_stirato.jpg', name: 'Bucato appena stirato' }
+        { file: 'bucato_appena_stirato.jpg', name: 'Bucato appena stirato' },
+        { file: 'cioccolata_calda.jpg', name: 'Cioccolata Calda' },
+        { file: 'torta_alle_mele.jpg', name: 'Torta alle Mele' },
+        { file: 'muschio.jpg', name: 'Muschio' },
+        { file: 'pino_di_natale.jpg', name: 'Pino di Natale' },
+        { file: 'pelle_nuova.jpg', name: 'Pelle Nuova' },
+        { file: 'fiori_darancio.jpg', name: "Fiori d'Arancio" }
       ]
     },
 
@@ -771,7 +973,15 @@
         { file: 'spongebob_e_patrick.jpg', name: 'Spongebob e Patrick' },
         { file: 'nana_e_yasu.jpg', name: 'Nana e Yasu' },
         { file: 'light_e_l.jpg', name: 'Light e L' },
-        { file: 'tom_e_jerry.jpg', name: 'Tom e Jerry' }
+        { file: 'tom_e_jerry.jpg', name: 'Tom e Jerry' },
+        { file: 'beavis_e_butthead.jpg', name: 'Beavis e Butt-Head' },
+        { file: 'bill_e_ted.jpg', name: 'Bill e Ted' },
+        { file: 'turner_e_hooch.jpg', name: 'Turner e Hooch' },
+        { file: 'wallace_e_gromit.jpg', name: 'Wallace e Gromit' },
+        { file: 'chip_e_dale.jpg', name: 'Chip e Dale' },
+        { file: 'ed_edd_e_eddy.jpg', name: 'Ed, Edd e Eddy' },
+        { file: 'calvin_e_hobbes.jpg', name: 'Calvin e Hobbes' },
+        { file: 'asterix_e_obelix.jpg', name: 'Asterix e Obelix' }
       ]
     },
 
@@ -796,7 +1006,13 @@
         { file: 'cucina_peruviana.jpg', name: 'Cucina Peruviana' },
         { file: 'cucina_turca.jpg', name: 'Cucina Turca' },
         { file: 'cucina_marocchina.jpg', name: 'Cucina Marocchina' },
-        { file: 'cucina_statunitense.jpg', name: 'Cucina Statunitense' }
+        { file: 'cucina_statunitense.jpg', name: 'Cucina Statunitense' },
+        { file: 'cucina_etiope.jpg', name: 'Cucina Etiope' },
+        { file: 'cucina_portoghese.jpg', name: 'Cucina Portoghese' },
+        { file: 'cucina_tedesca.jpg', name: 'Cucina Tedesca' },
+        { file: 'cucina_brasiliana.jpg', name: 'Cucina Brasiliana' },
+        { file: 'cucina_indonesiana.jpg', name: 'Cucina Indonesiana' },
+        { file: 'cucina_israeliana.jpg', name: 'Cucina Israeliana' }
       ]
     },
 
@@ -821,7 +1037,15 @@
         { file: 'aeroplano.jpg', name: "L'Aeroplano" },
         { file: 'bussola.jpg', name: 'La Bussola' },
         { file: 'computer.jpg', name: 'Il Computer' },
-        { file: 'carta.jpg', name: 'La Carta' }
+        { file: 'carta.jpg', name: 'La Carta' },
+        { file: 'motore_a_vapore.jpg', name: 'Il Motore a Vapore' },
+        { file: 'microscopio.jpg', name: 'Il Microscopio' },
+        { file: 'fotografia.jpg', name: 'La Fotografia' },
+        { file: 'cemento_armato.jpg', name: 'Il Cemento Armato' },
+        { file: 'sapone.jpg', name: 'Il Sapone' },
+        { file: 'radio.jpg', name: 'La Radio' },
+        { file: 'orologio_meccanico.jpg', name: "L'Orologio Meccanico" },
+        { file: 'occhiali.jpg', name: 'Gli Occhiali' }
       ]
     },
 
@@ -846,7 +1070,369 @@
         { file: 'giaguaro.jpg', name: 'Giaguaro' },
         { file: 'cigno.jpg', name: 'Cigno' },
         { file: 'ghepardo.jpg', name: 'Ghepardo' },
-        { file: 'volpe_artica.jpg', name: 'Volpe Artica' }
+        { file: 'volpe_artica.jpg', name: 'Volpe Artica' },
+        { file: 'cervo.jpg', name: 'Cervo' },
+        { file: 'renna.jpg', name: 'Renna' },
+        { file: 'foca.jpg', name: 'Foca' },
+        { file: 'pinguino.jpg', name: 'Pinguino' },
+        { file: 'colibri.jpg', name: 'Colibrì' },
+        { file: 'pavone.jpg', name: 'Pavone' },
+        { file: 'bisonte.jpg', name: 'Bisonte' },
+        { file: 'puma.jpg', name: 'Puma' }
+      ]
+    },
+
+    scene_nana: {
+      title: 'Scene di Nana',
+      emoji: '🎭',
+      description: 'Qual è la scena più bella di Nana? Scegli la tua preferita ad ogni sfida fino alla finale.',
+      folder: 'assets/images/scene_nana',
+      items: [
+        { file: 'nana_introduzione.jpg', name: 'Introduzione di Nana' },
+        { file: 'nana_yasu.jpg', name: 'Nana e Yasu' },
+        { file: 'nana_yasu_2.jpg', name: 'Nana e Yasu (2)' },
+        { file: 'nana_yasu_3.jpg', name: 'Nana e Yasu (3)' },
+        { file: 'nana_nana.jpg', name: 'Le Due Nana' },
+        { file: 'nana_nana_2.jpg', name: 'Le Due Nana (2)' },
+        { file: 'nana_nana_3.jpg', name: 'Le Due Nana (3)' },
+        { file: 'nana_2.jpg', name: 'Nana (2)' },
+        { file: 'nana_bicchiere.jpg', name: 'Il Bicchiere' },
+        { file: 'nana_concert.jpg', name: 'Il Concerto' },
+        { file: 'nana_kiss.jpg', name: 'Il Bacio' },
+        { file: 'nana_vasca.jpg', name: 'La Vasca da Bagno' },
+        { file: 'nana_ren.jpg', name: 'Ren' },
+        { file: 'nana_ren_2.jpg', name: 'Ren (2)' },
+        { file: 'nana_ren_3.jpg', name: 'Ren (3)' },
+        { file: 'nana_ren_4.jpg', name: 'Ren (4)' },
+        { file: 'nana_ren_5.jpg', name: 'Ren (5)' },
+        { file: 'nana_ren_6.jpg', name: 'Ren (6)' },
+        { file: 'nana_ren_yasu.jpg', name: 'Ren e Yasu' },
+        { file: 'nana_nobu.jpg', name: 'Nobu' },
+        { file: 'nana_nobu_takumi.jpg', name: 'Nobu e Takumi' },
+        { file: 'nana_shin.jpg', name: 'Shin' },
+        { file: 'nana_takumi.jpg', name: 'Takumi' },
+        { file: 'ren_death.jpg', name: 'La Morte di Ren' }
+      ]
+    },
+
+    personaggi_migliori_anime: {
+      title: 'Personaggi Migliori Anime',
+      emoji: '⚔️',
+      description: 'Qual è il personaggio anime più forte/amato di sempre? Scegli il tuo preferito ad ogni sfida fino alla finale.',
+      folder: 'assets/images/personaggi_migliori_anime',
+      items: [
+        { file: 'yasu.jpg', name: 'Yasu (Nana)' },
+        { file: 'ren.jpg', name: 'Ren (Nana)' },
+        { file: 'levi_ackerman.jpg', name: "Levi Ackerman (L'Attacco dei Giganti)" },
+        { file: 'zoro.jpg', name: 'Zoro (One Piece)' },
+        { file: 'l.jpg', name: 'L (Death Note)' },
+        { file: 'itachi.jpg', name: 'Itachi Uchiha (Naruto)' },
+        { file: 'luffy.jpg', name: 'Luffy (One Piece)' },
+        { file: 'naruto.jpg', name: 'Naruto Uzumaki' },
+        { file: 'gojo_satoru.jpg', name: 'Gojo Satoru (Jujutsu Kaisen)' },
+        { file: 'killua.jpg', name: 'Killua Zoldyck (Hunter x Hunter)' },
+        { file: 'light_yagami.jpg', name: 'Light Yagami (Death Note)' },
+        { file: 'vegeta.jpg', name: 'Vegeta (Dragon Ball)' },
+        { file: 'edward_elric.jpg', name: 'Edward Elric (Fullmetal Alchemist)' },
+        { file: 'guts.jpg', name: 'Guts (Berserk)' },
+        { file: 'spike_spiegel.jpg', name: 'Spike Spiegel (Cowboy Bebop)' },
+        { file: 'eren_yeager.jpg', name: "Eren Yeager (L'Attacco dei Giganti)" },
+        { file: 'sasuke.jpg', name: 'Sasuke Uchiha (Naruto)' },
+        { file: 'rem.jpg', name: 'Rem (Re:Zero)' },
+        { file: 'tanjiro.jpg', name: 'Tanjiro Kamado (Demon Slayer)' },
+        { file: 'anya_forger.jpg', name: 'Anya Forger (Spy x Family)' },
+        { file: 'saitama.jpg', name: 'Saitama (One Punch Man)' },
+        { file: 'rimuru.jpg', name: 'Rimuru Tempest (Tensura)' },
+        { file: 'meliodas.jpg', name: 'Meliodas (Seven Deadly Sins)' },
+        { file: 'sung_jin_woo.jpg', name: 'Sung Jin-Woo (Solo Leveling)' }
+      ]
+    },
+
+    colori: {
+      title: 'Colori',
+      emoji: '🎨',
+      description: 'Qual è il colore più bello in assoluto? Scegli il tuo preferito ad ogni sfida fino alla finale.',
+      folder: 'assets/images/colori',
+      items: [
+        { file: 'verde.jpg', name: 'Verde' },
+        { file: 'rosso.jpg', name: 'Rosso' },
+        { file: 'giallo.jpg', name: 'Giallo' },
+        { file: 'blu.jpg', name: 'Blu' },
+        { file: 'viola.jpg', name: 'Viola' },
+        { file: 'arancione.jpg', name: 'Arancione' },
+        { file: 'rosa.jpg', name: 'Rosa' },
+        { file: 'nero.jpg', name: 'Nero' },
+        { file: 'bianco.jpg', name: 'Bianco' },
+        { file: 'grigio.jpg', name: 'Grigio' },
+        { file: 'marrone.jpg', name: 'Marrone' },
+        { file: 'azzurro.jpg', name: 'Azzurro' },
+        { file: 'turchese.jpg', name: 'Turchese' },
+        { file: 'bordeaux.jpg', name: 'Bordeaux' },
+        { file: 'oro.jpg', name: 'Oro' },
+        { file: 'argento.jpg', name: 'Argento' },
+        { file: 'corallo.jpg', name: 'Corallo' },
+        { file: 'menta.jpg', name: 'Menta' },
+        { file: 'lavanda.jpg', name: 'Lavanda' },
+        { file: 'senape.jpg', name: 'Senape' },
+        { file: 'ciano.jpg', name: 'Ciano' },
+        { file: 'indaco.jpg', name: 'Indaco' }
+      ]
+    },
+
+    attivita_da_fare: {
+      title: 'Attività da Fare',
+      emoji: '🎯',
+      description: 'Qual è l\'attività più divertente da fare? Scegli la tua preferita ad ogni sfida fino alla finale.',
+      folder: 'assets/images/attivita_da_fare',
+      items: [
+        { file: 'kayaking.jpg', name: 'Kayaking' },
+        { file: 'gelato.jpg', name: 'Prendere un Gelato' },
+        { file: 'luna_park.jpg', name: 'Luna Park' },
+        { file: 'pattinaggio_sul_ghiaccio.jpg', name: 'Pattinaggio sul Ghiaccio' },
+        { file: 'acquapark.jpg', name: 'Acquapark' },
+        { file: 'giornata_sulla_neve.jpg', name: 'Giornata sulla Neve' },
+        { file: 'go_kart.jpg', name: 'Go Kart' },
+        { file: 'biliardo.jpg', name: 'Biliardo' },
+        { file: 'bowling.jpg', name: 'Bowling' },
+        { file: 'giro_turistico.jpg', name: 'Giro Turistico' },
+        { file: 'brunch.jpg', name: 'Brunch' },
+        { file: 'drive_in.jpg', name: 'Drive-in' },
+        { file: 'karaoke.jpg', name: 'Karaoke' },
+        { file: 'giornata_al_mare.jpg', name: 'Giornata al Mare' },
+        { file: 'serata_di_poker.jpg', name: 'Serata di Poker' },
+        { file: 'osservare_le_stelle.jpg', name: 'Osservare le Stelle' },
+        { file: 'campeggio.jpg', name: 'Campeggio' },
+        { file: 'minigolf.jpg', name: 'Minigolf' },
+        { file: 'arrampicata.jpg', name: 'Arrampicata' },
+        { file: 'giro_in_bicicletta.jpg', name: 'Giro in Bicicletta' },
+        { file: 'laser_tag.jpg', name: 'Laser Tag' },
+        { file: 'paintball.jpg', name: 'Paintball' },
+        { file: 'beer_pong.jpg', name: 'Beer Pong' },
+        { file: 'ping_pong.jpg', name: 'Ping Pong' },
+        { file: 'pattinaggio_a_rotelle.jpg', name: 'Pattinaggio a Rotelle' },
+        { file: 'sala_giochi.jpg', name: 'Sala Giochi' },
+        { file: 'trekking.jpg', name: 'Trekking' },
+        { file: 'serata_giochi_da_tavolo.jpg', name: 'Serata di Giochi da Tavolo' },
+        { file: 'serata_di_quiz.jpg', name: 'Serata di Quiz' },
+        { file: 'basket_tra_amici.jpg', name: 'Basket tra Amici' },
+        { file: 'trampoline_park.jpg', name: 'Trampoline Park' },
+        { file: 'percorso_a_ostacoli.jpg', name: 'Percorso a Ostacoli' },
+        { file: 'torneo_di_fifa.jpg', name: 'Torneo di FIFA' },
+        { file: 'serata_jackbox.jpg', name: 'Serata di Jackbox Games' },
+        { file: 'serata_film_a_casa.jpg', name: 'Serata Film a Casa' },
+        { file: 'andare_al_cinema.jpg', name: 'Andare al Cinema' },
+        { file: 'scivoli_dacqua.jpg', name: "Scivoli d'Acqua" },
+        { file: 'squash.jpg', name: 'Squash' },
+        { file: 'andare_allo_zoo.jpg', name: 'Andare allo Zoo' },
+        { file: 'acquario.jpg', name: 'Acquario' },
+        { file: 'serata_in_discoteca.jpg', name: 'Serata in Discoteca' },
+        { file: 'guardare_una_partita.jpg', name: 'Guardare una Partita' },
+        { file: 'cena_fuori.jpg', name: 'Cena Fuori' },
+        { file: 'colazione_al_bar.jpg', name: 'Colazione al Bar' },
+        { file: 'viaggio_in_auto.jpg', name: 'Viaggio in Auto' },
+        { file: 'andare_a_un_concerto.jpg', name: 'Andare a un Concerto' },
+        { file: 'fiera_a_tema.jpg', name: 'Fiera a Tema' },
+        { file: 'palla_avvelenata.jpg', name: 'Palla Avvelenata' },
+        { file: 'cena_di_natale.jpg', name: 'Cena di Natale' },
+        { file: 'gioco_di_ruolo_dal_vivo.jpg', name: 'Gioco di Ruolo dal Vivo' },
+        { file: 'giornata_in_piscina.jpg', name: 'Giornata in Piscina' },
+        { file: 'tennis_tra_amici.jpg', name: 'Tennis tra Amici' },
+        { file: 'freccette.jpg', name: 'Freccette' },
+        { file: 'drink_e_falo.jpg', name: 'Drink e Falò' },
+        { file: 'degustazione_di_vino.jpg', name: 'Degustazione di Vino' },
+        { file: 'tiro_con_larco.jpg', name: "Tiro con l'Arco" },
+        { file: 'kickball.jpg', name: 'Kickball' },
+        { file: 'scacchi.jpg', name: 'Scacchi' },
+        { file: 'festa_in_maschera.jpg', name: 'Festa in Maschera' },
+        { file: 'gallerie_darte.jpg', name: "Gallerie d'Arte" },
+        { file: 'visita_al_museo.jpg', name: 'Visita al Museo' },
+        { file: 'giro_in_skateboard.jpg', name: 'Giro in Skateboard' },
+        { file: 'parco_divertimenti.jpg', name: 'Parco Divertimenti' },
+        { file: 'videogiochi_online.jpg', name: 'Videogiochi Online' },
+        { file: 'partita_di_calcio.jpg', name: 'Partita di Calcio tra Amici' },
+        { file: 'caffe_tra_amici.jpg', name: 'Caffè tra Amici' },
+        { file: 'barbecue_nel_weekend.jpg', name: 'Barbecue nel Weekend' },
+        { file: 'pigiama_party.jpg', name: 'Serata Pigiama Party' },
+        { file: 'giardino_botanico.jpg', name: 'Giardino Botanico' },
+        { file: 'tour_dei_fantasmi.jpg', name: 'Tour dei Fantasmi' },
+        { file: 'allenamento_in_compagnia.jpg', name: 'Allenamento in Compagnia' },
+        { file: 'andare_a_teatro.jpg', name: 'Andare a Teatro' },
+        { file: 'mercato_cittadino.jpg', name: 'Mercato Cittadino' },
+        { file: 'shopping_in_vetrina.jpg', name: 'Shopping in Vetrina' },
+        { file: 'cat_cafe.jpg', name: 'Cat Café' },
+        { file: 'fattoria_didattica.jpg', name: 'Fattoria Didattica' },
+        { file: 'battaglia_dacqua.jpg', name: "Battaglia d'Acqua" },
+        { file: 'spettacolo_di_cabaret.jpg', name: 'Spettacolo di Cabaret' },
+        { file: 'corsa_in_compagnia.jpg', name: 'Corsa in Compagnia' },
+        { file: 'pesca.jpg', name: 'Pesca' },
+        { file: 'spettacolo_di_animali.jpg', name: 'Spettacolo di Animali' },
+        { file: 'fuochi_dartificio.jpg', name: "Fuochi d'Artificio di Capodanno" },
+        { file: 'luci_di_natale.jpg', name: 'Luci di Natale' },
+        { file: 'giro_in_fuoristrada.jpg', name: 'Giro in Fuoristrada' },
+        { file: 'lazy_river.jpg', name: 'Lazy River' },
+        { file: 'percorso_ostacoli_gonfiabile.jpg', name: 'Percorso Ostacoli Gonfiabile' }
+      ]
+    },
+
+    qualita_ideali_partner: {
+      title: 'Qualità Ideali in un Partner',
+      emoji: '💘',
+      description: 'Qual è la qualità più importante in un partner? Scegli la tua preferita ad ogni sfida fino alla finale.',
+      folder: 'assets/images/qualita_ideali_partner',
+      items: [
+        { file: 'empatia.jpg', name: 'Empatia' },
+        { file: 'spirito_avventura.jpg', name: "Spirito d'Avventura" },
+        { file: 'romanticismo.jpg', name: 'Romanticismo' },
+        { file: 'begli_occhi.jpg', name: 'Begli Occhi' },
+        { file: 'fisico_atletico.jpg', name: 'Fisico Atletico' },
+        { file: 'senso_dell_umorismo.jpg', name: "Senso dell'Umorismo" },
+        { file: 'intelligenza.jpg', name: 'Intelligenza' },
+        { file: 'gentilezza.jpg', name: 'Gentilezza' },
+        { file: 'ambizione.jpg', name: 'Ambizione' },
+        { file: 'lealta.jpg', name: 'Lealtà' },
+        { file: 'generosita.jpg', name: 'Generosità' },
+        { file: 'pazienza.jpg', name: 'Pazienza' },
+        { file: 'bel_sorriso.jpg', name: 'Bel Sorriso' },
+        { file: 'sicurezza_in_se_stessi.jpg', name: 'Sicurezza in Sé Stessi' },
+        { file: 'capacita_di_ascoltare.jpg', name: 'Capacità di Ascoltare' },
+        { file: 'indipendenza.jpg', name: 'Indipendenza' },
+        { file: 'addominali.jpg', name: 'Addominali Scolpiti' },
+        { file: 'lato_b.jpg', name: 'Lato B' },
+        { file: 'pettorali.jpg', name: 'Pettorali' },
+        { file: 'stile_nel_vestire.jpg', name: 'Stile nel Vestire' },
+        { file: 'saper_ballare.jpg', name: 'Saper Ballare' },
+        { file: 'maturita_emotiva.jpg', name: 'Maturità Emotiva' },
+        { file: 'bei_piedi.jpg', name: 'Bei Piedi' },
+        { file: 'sapere_flirtare.jpg', name: 'Sapere Flirtare' },
+        { file: 'bei_capelli.jpg', name: 'Bei Capelli' },
+        { file: 'altezza.jpg', name: 'Altezza' },
+        { file: 'onesta_partner.jpg', name: 'Onestà' },
+        { file: 'belle_gambe.jpg', name: 'Belle Gambe' },
+        { file: 'belle_labbra.jpg', name: 'Belle Labbra' },
+        { file: 'muscoli.jpg', name: 'Muscoli' },
+        { file: 'carriera_interessante.jpg', name: 'Lavoro/Carriera Interessante' },
+        { file: 'apertura_mentale.jpg', name: 'Apertura Mentale' },
+        { file: 'cura_della_persona.jpg', name: 'Cura della Persona' },
+        { file: 'affettuosita_fisica.jpg', name: 'Affettuosità Fisica' },
+        { file: 'buon_profumo.jpg', name: 'Buon Profumo' },
+        { file: 'intesa_fisica.jpg', name: 'Intesa Fisica' },
+        { file: 'saper_baciare.jpg', name: 'Saper Baciare Bene' },
+        { file: 'voce_sensuale.jpg', name: 'Voce Sensuale' },
+        { file: 'benessere_economico.jpg', name: 'Benessere Economico' },
+        { file: 'corporatura.jpg', name: 'Corporatura' }
+      ]
+    },
+
+    segnali_allarme_partner: {
+      title: "Segnali d'Allarme in un Partner",
+      emoji: '🚩',
+      description: "Qual è il segnale d'allarme peggiore in un partner? Scegli quello che ti preoccupa di più ad ogni sfida fino alla finale.",
+      folder: 'assets/images/segnali_allarme_partner',
+      items: [
+        { file: 'gelosia_eccessiva.jpg', name: 'Gelosia Eccessiva' },
+        { file: 'bugie_frequenti.jpg', name: 'Bugie Frequenti' },
+        { file: 'mancanza_di_rispetto.jpg', name: 'Mancanza di Rispetto' },
+        { file: 'controllo_del_telefono.jpg', name: 'Controllo Ossessivo del Telefono' },
+        { file: 'non_rispondere_ai_messaggi.jpg', name: 'Non Rispondere ai Messaggi per Giorni' },
+        { file: 'parlare_male_degli_ex.jpg', name: 'Parlare Male degli Ex' },
+        { file: 'non_avere_amici.jpg', name: 'Non Avere Amici' },
+        { file: 'evitare_la_famiglia.jpg', name: 'Evitare di Presentarti alla Famiglia' },
+        { file: 'egocentrismo.jpg', name: 'Egocentrismo' },
+        { file: 'comportamento_passivo_aggressivo.jpg', name: 'Comportamento Passivo-Aggressivo' },
+        { file: 'instabilita_finanziaria.jpg', name: 'Instabilità Finanziaria Cronica' },
+        { file: 'manipolazione_emotiva.jpg', name: 'Manipolazione Emotiva' },
+        { file: 'scarsa_igiene.jpg', name: 'Scarsa Igiene Personale' },
+        { file: 'non_ammettere_errori.jpg', name: 'Non Ammettere Mai gli Errori' },
+        { file: 'umore_instabile.jpg', name: 'Umore Instabile e Imprevedibile' },
+        { file: 'disprezzo_per_lo_staff.jpg', name: 'Disprezzo per Camerieri/Staff' },
+        { file: 'non_partecipa_conversazione.jpg', name: 'Non Partecipa alla Conversazione' },
+        { file: 'non_ti_guarda_negli_occhi.jpg', name: 'Non ti Guarda negli Occhi' },
+        { file: 'sempre_troppo_occupato.jpg', name: 'Sempre Troppo Occupato per Uscire' },
+        { file: 'sei_sempre_tu_a_organizzare.jpg', name: 'Sei Sempre Tu a Organizzare' },
+        { file: 'rifiuta_di_definire_la_relazione.jpg', name: 'Rifiuta di Dare un Nome alla Relazione' },
+        { file: 'non_scende_a_compromessi.jpg', name: 'Non Fa Mai un Compromesso' },
+        { file: 'non_sa_dire_di_no.jpg', name: 'Non Sa Mai Dire di No' },
+        { file: 'non_ha_obiettivi.jpg', name: 'Non Ha Obiettivi nella Vita' },
+        { file: 'sono_vegani.jpg', name: 'Sono Vegani' },
+        { file: 'non_ama_i_bambini.jpg', name: 'Non Ama i Bambini' },
+        { file: 'sa_cucinare_solo_pasta_in_bianco.jpg', name: 'Sa Cucinare Solo Pasta in Bianco' },
+        { file: 'non_ha_hobby.jpg', name: 'Non Hai Idea di Quali Siano i Suoi Hobby' },
+        { file: 'flirta_con_chiunque.jpg', name: 'Flirta con Chiunque' },
+        { file: 'si_lamenta_sempre.jpg', name: 'Si Lamenta di Continuo' },
+        { file: 'si_scusa_troppo.jpg', name: 'Si Scusa in Continuazione' },
+        { file: 'non_lava_i_piatti.jpg', name: 'Non Lava Mai i Piatti' },
+        { file: 'spende_troppo.jpg', name: 'Spende Troppo' },
+        { file: 'guida_male.jpg', name: 'Guida Male' },
+        { file: 'sempre_in_ritardo.jpg', name: 'È Sempre in Ritardo' },
+        { file: 'non_ama_lo_sport.jpg', name: 'Non Ama lo Sport' },
+        { file: 'ha_un_android.jpg', name: 'Ha un Android (invece di iPhone)' },
+        { file: 'usa_ancora_snapchat.jpg', name: 'Usa Ancora Snapchat' },
+        { file: 'usa_bereal.jpg', name: 'Usa BeReal' },
+        { file: 'super_fan_di_una_popstar.jpg', name: 'È Super Fan di una Popstar' },
+        { file: 'usa_apple_music.jpg', name: 'Usa Apple Music invece di Spotify' },
+        { file: 'non_ammette_di_avere_freddo.jpg', name: 'Non Ammette Mai di Avere Freddo' },
+        { file: 'macchina_in_disordine.jpg', name: 'Ha la Macchina Sempre in Disordine' },
+        { file: 'indeciso_su_tutto.jpg', name: 'È Indeciso su Tutto' },
+        { file: 'non_prova_cose_nuove.jpg', name: 'Non Vuole Mai Provare Cose Nuove' },
+        { file: 'odia_star_wars.jpg', name: 'Odia Star Wars' },
+        { file: 'ti_confronta_con_altri.jpg', name: 'Ti Confronta Sempre con Altri' },
+        { file: 'spettegola.jpg', name: 'Spettegola di Continuo' }
+      ]
+    },
+
+    valori_fondamentali: {
+      title: 'Valori Fondamentali della Vita',
+      emoji: '🧭',
+      description: 'Qual è il valore più importante nella vita? Scegli il tuo preferito ad ogni sfida fino alla finale.',
+      folder: 'assets/images/valori_fondamentali',
+      items: [
+        { file: 'famiglia.jpg', name: 'Famiglia' },
+        { file: 'onesta.jpg', name: 'Onestà' },
+        { file: 'liberta.jpg', name: 'Libertà' },
+        { file: 'salute.jpg', name: 'Salute' },
+        { file: 'amore.jpg', name: 'Amore' },
+        { file: 'amicizia.jpg', name: 'Amicizia' },
+        { file: 'crescita_personale.jpg', name: 'Crescita Personale' },
+        { file: 'sicurezza.jpg', name: 'Sicurezza' },
+        { file: 'rispetto.jpg', name: 'Rispetto' },
+        { file: 'giustizia.jpg', name: 'Giustizia' },
+        { file: 'gratitudine.jpg', name: 'Gratitudine' },
+        { file: 'creativita.jpg', name: 'Creatività' },
+        { file: 'avventura.jpg', name: 'Avventura' },
+        { file: 'equilibrio.jpg', name: 'Equilibrio' },
+        { file: 'autenticita.jpg', name: 'Autenticità' },
+        { file: 'spiritualita.jpg', name: 'Spiritualità' },
+        { file: 'coraggio.jpg', name: 'Coraggio' },
+        { file: 'umilta.jpg', name: 'Umiltà' },
+        { file: 'perdono.jpg', name: 'Perdono' },
+        { file: 'empatia_valore.jpg', name: 'Empatia' },
+        { file: 'resilienza.jpg', name: 'Resilienza' },
+        { file: 'solidarieta.jpg', name: 'Solidarietà' }
+      ]
+    },
+
+    forme_di_intimita: {
+      title: 'Forme di Intimità',
+      emoji: '💞',
+      description: 'Qual è la forma di intimità più bella tra due persone? Scegli la tua preferita ad ogni sfida fino alla finale.',
+      folder: 'assets/images/forme_di_intimita',
+      items: [
+        { file: 'tenersi_per_mano.jpg', name: 'Tenersi per Mano' },
+        { file: 'abbracciarsi.jpg', name: 'Abbracciarsi' },
+        { file: 'baciarsi.jpg', name: 'Baciarsi' },
+        { file: 'coccole.jpg', name: 'Coccole' },
+        { file: 'massaggio.jpg', name: 'Massaggio' },
+        { file: 'carezze.jpg', name: 'Carezze' },
+        { file: 'pomiciare.jpg', name: 'Pomiciare' },
+        { file: 'preliminari.jpg', name: 'Preliminari' },
+        { file: 'sesso_orale.jpg', name: 'Sesso Orale' },
+        { file: 'rapporto_sessuale.jpg', name: 'Rapporto Sessuale' },
+        { file: 'sesso_anale.jpg', name: 'Sesso Anale' },
+        { file: 'doccia_insieme.jpg', name: 'Doccia Insieme' },
+        { file: 'dormire_abbracciati.jpg', name: 'Dormire Abbracciati' },
+        { file: 'baci_sul_collo.jpg', name: 'Baci sul Collo' },
+        { file: 'ballo_lento.jpg', name: 'Ballo Lento Abbracciati' },
+        { file: 'sguardi_intensi.jpg', name: 'Sguardi Intensi' }
       ]
     }
   };
