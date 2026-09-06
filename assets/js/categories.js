@@ -1549,6 +1549,72 @@
         { file: 'formaggio_fuso_sul_gelato.jpg', name: 'Formaggio Fuso sul Gelato' },
         { file: 'ranch_sulla_pizza.jpg', name: 'Ranch sulla Pizza' }
       ]
+    },
+
+    elettrodomestici: {
+      title: 'Elettrodomestici Preferiti',
+      emoji: '🔌',
+      description: "Qual è l'elettrodomestico/utensile di casa preferito? Scegli il tuo preferito ad ogni sfida fino alla finale.",
+      folder: 'assets/images/elettrodomestici',
+      items: [
+        { file: 'condizionatore.jpg', name: "Condizionatore d'Aria" },
+        { file: 'vasca_da_bagno.jpg', name: 'Vasca da Bagno' },
+        { file: 'frullatore.jpg', name: 'Frullatore' },
+        { file: 'ventilatore_a_soffitto.jpg', name: 'Ventilatore a Soffitto' },
+        { file: 'macchina_del_caffe.jpg', name: 'Macchina del Caffè' },
+        { file: 'computer.jpg', name: 'Computer' },
+        { file: 'lavastoviglie.jpg', name: 'Lavastoviglie' },
+        { file: 'asciugatrice.jpg', name: 'Asciugatrice' },
+        { file: 'ventilatore.jpg', name: 'Ventilatore' },
+        { file: 'congelatore.jpg', name: 'Congelatore' },
+        { file: 'frigorifero.jpg', name: 'Frigorifero' },
+        { file: 'stufa.jpg', name: 'Stufa' },
+        { file: 'piastra_elettrica.jpg', name: 'Piastra Elettrica' },
+        { file: 'asse_da_stiro.jpg', name: 'Asse da Stiro' },
+        { file: 'microonde.jpg', name: 'Microonde' },
+        { file: 'stereo.jpg', name: 'Stereo' },
+        { file: 'forno.jpg', name: 'Forno' },
+        { file: 'trita_documenti.jpg', name: 'Trita Documenti' },
+        { file: 'macchina_da_cucire.jpg', name: 'Macchina da Cucire' },
+        { file: 'doccia.jpg', name: 'Doccia' },
+        { file: 'lavandino.jpg', name: 'Lavandino' },
+        { file: 'planetaria.jpg', name: 'Planetaria (Impastatrice)' },
+        { file: 'piano_cottura.jpg', name: 'Piano Cottura' },
+        { file: 'lampada_da_tavolo.jpg', name: 'Lampada da Tavolo' },
+        { file: 'telefono.jpg', name: 'Telefono' },
+        { file: 'televisore.jpg', name: 'Televisore' },
+        { file: 'forno_tostapane.jpg', name: 'Forno Tostapane' },
+        { file: 'tostapane.jpg', name: 'Tostapane' },
+        { file: 'water.jpg', name: 'WC' },
+        { file: 'aspirapolvere.jpg', name: 'Aspirapolvere' },
+        { file: 'piastra_per_waffle.jpg', name: 'Piastra per Waffle' },
+        { file: 'lavatrice.jpg', name: 'Lavatrice' }
+      ]
+    },
+
+    posizioni: {
+      title: 'Posizioni',
+      emoji: '🔥',
+      description: 'Qual è la posizione preferita? Scegli la tua preferita ad ogni sfida fino alla finale.',
+      folder: 'assets/images/posizioni',
+      items: [
+        { file: 'missionario.jpg', name: 'Missionario' },
+        { file: 'pecorina.jpg', name: 'Pecorina' },
+        { file: 'cowgirl.jpg', name: 'Cowgirl' },
+        { file: 'cucchiaio.jpg', name: 'Cucchiaio' },
+        { file: 'amazzone.jpg', name: 'Amazzone' },
+        { file: 'forbici.jpg', name: 'Forbici' },
+        { file: 'carriola.jpg', name: 'Carriola' },
+        { file: 'farfalla.jpg', name: 'Farfalla' },
+        { file: 'granchio.jpg', name: 'Granchio' },
+        { file: 'culla.jpg', name: 'Culla' },
+        { file: 'ballerina.jpg', name: 'Ballerina' },
+        { file: 'lap_dance.jpg', name: 'Lap Dance' },
+        { file: 'rodeo.jpg', name: 'Rodeo' },
+        { file: 'piledriver.jpg', name: 'Piledriver' },
+        { file: 'sessantanove.jpg', name: '69' },
+        { file: 'in_piedi.jpg', name: 'In Piedi' }
+      ]
     }
   };
 
