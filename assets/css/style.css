@@ -35,6 +35,23 @@ html, body{
   min-height: 100%;
 }
 
+/* Pagina sfida: il tabellone deve stare tutto in una schermata, senza
+   scroll verticale della pagina (lo scroll orizzontale resta per i
+   tornei con più turni/colonne). Attivato solo su sfida.html tramite
+   la classe sul <body>, così index.html continua a scorrere normalmente. */
+body.sfida-page{
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+body.sfida-page #app{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
 body{
   font-family: var(--font-body);
   color: var(--text);
@@ -217,9 +234,10 @@ button{ font-family: inherit; }
    ========================================================= */
 
 .torneo-header{
-  padding: 18px 24px 6px;
+  padding: 10px 24px 4px;
   text-align: center;
   position: relative;
+  flex: 0 0 auto;
 }
 
 .back-link{
@@ -247,9 +265,9 @@ button{ font-family: inherit; }
 
 .torneo-title{
   font-family: var(--font-display);
-  font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
   font-weight: 800;
-  margin: 4px 0 4px;
+  margin: 2px 0 2px;
 }
 
 .torneo-title .emoji{ margin-right: 8px; }
@@ -257,29 +275,34 @@ button{ font-family: inherit; }
 .torneo-desc{
   color: var(--text-dim);
   max-width: 520px;
-  margin: 0 auto 4px;
-  font-size: 0.88rem;
+  margin: 0 auto 2px;
+  font-size: 0.8rem;
 }
 
 .round-indicator{
   display: inline-block;
-  margin-top: 6px;
-  font-size: 0.72rem;
+  margin-top: 4px;
+  font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent-2);
   background: rgba(245,158,11,0.12);
   border: 1px solid rgba(245,158,11,0.3);
-  padding: 5px 14px;
+  padding: 4px 12px;
   border-radius: 999px;
 }
 
 /* Bracket layout */
 .bracket-wrap{
   position: relative;
-  padding: 12px 16px 50px;
+  padding: 6px 16px 8px;
   overflow-x: auto;
+  overflow-y: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  align-items: center;
 }
 
 .bracket{
@@ -291,7 +314,8 @@ button{ font-family: inherit; }
   width: max-content;
   min-width: 100%;
   margin: 0 auto;
-  padding: 6px 6px 20px;
+  padding: 4px 6px;
+  height: 100%;
 }
 
 .bracket svg.connectors{
@@ -314,7 +338,7 @@ button{ font-family: inherit; }
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 14px;
+  gap: 6px;
   width: var(--col-w);
   flex-shrink: 0;
   position: relative;
@@ -333,23 +357,26 @@ button{ font-family: inherit; }
 
 .round-label{
   text-align: center;
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--text-dim);
   margin-bottom: 2px;
-  white-space: nowrap;
+  line-height: 1.15;
+  /* Se la colonna è molto stretta (poco spazio orizzontale) l'etichetta può
+     andare a capo su due righe invece di sforare nella colonna accanto. */
+  overflow-wrap: break-word;
 }
 
 .match{
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 3px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 6px;
+  padding: 4px;
   box-shadow: var(--shadow);
   min-width: 0;
 }
@@ -357,8 +384,8 @@ button{ font-family: inherit; }
 .slot{
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  padding: 5px;
+  gap: 2px;
+  padding: 3px;
   border-radius: var(--radius-sm);
   border: 1px solid transparent;
   transition: transform .18s ease, background .18s ease, border-color .18s ease, opacity .3s ease;
@@ -369,7 +396,10 @@ button{ font-family: inherit; }
 
 .slot .thumb{
   position: relative;
-  width: 100%;
+  height: var(--thumb-h, 120px);
+  width: auto;
+  max-width: 100%;
+  margin: 0 auto;
   aspect-ratio: 4 / 3;
   border-radius: 8px;
   overflow: hidden;
@@ -385,15 +415,15 @@ button{ font-family: inherit; }
 
 .slot .zoom-btn{
   position: absolute;
-  top: 6px;
-  right: 6px;
-  width: 32px;
-  height: 32px;
+  top: 4px;
+  right: 4px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   border: 1.5px solid rgba(255,255,255,0.4);
   background: rgba(6,8,20,0.75);
   color: #fff;
-  font-size: 15px;
+  font-size: 12px;
   line-height: 1;
   display: flex;
   align-items: center;
@@ -469,14 +499,14 @@ button{ font-family: inherit; }
 }
 
 .slot .name{
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   font-weight: 600;
   color: var(--text);
   line-height: 1.2;
   text-align: center;
-  white-space: normal;
-  overflow-wrap: break-word;
-  word-break: break-word;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   width: 100%;
 }
 
@@ -777,7 +807,7 @@ button{ font-family: inherit; }
   .back-link{ position: static; display: inline-flex; margin-bottom: 14px; }
   .torneo-header{ text-align: center; }
   .bracket-wrap{
-    padding: 14px 14px 50px;
+    padding: 8px 14px;
     scroll-snap-type: x proximity;
     -webkit-overflow-scrolling: touch;
   }

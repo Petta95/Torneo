@@ -69,26 +69,136 @@
       this.render();
     }
 
-    // Misura l'altezza reale di un match (dipende dalla larghezza della
-    // colonna, che è responsive via CSS/vw) creandone uno di prova invisibile
-    // in un contenitore FISSO e separato dal tabellone vero e proprio: se lo
-    // svuotassimo e misurassimo dentro di esso, per un istante la pagina
-    // diventerebbe più corta e il browser forzerebbe lo scroll in cima
-    // (bug: "torna su" ad ogni click). Il box di misura vive sempre fuori
-    // dal flusso (position:fixed, fuori schermo), quindi non influenza mai
-    // l'altezza della pagina né la posizione di scroll.
-    _measureRowHeight() {
-      // Misuriamo il caso peggiore (i due nomi più lunghi) nella colonna
-      // più larga (round-leaf, ottavi): è lì che le foto sono più alte,
-      // quindi quel valore basta come altezza di riga per tutti i turni
-      // successivi, che sono più stretti e via via più bassi.
+    // Calcola quanto grande può essere la foto di ciascun turno in modo che
+    // l'INTERO tabellone — tutte le colonne affiancate, tutte le righe di un
+    // lato impilate — entri nello schermo sia in verticale che in
+    // orizzontale, senza bisogno di scorrere.
+    //
+    // Procede così:
+    //  1) misura quanto spazio "di contorno" occupa un match a parità di
+    //     foto (padding, nome, bordi) rendendone uno di prova con un'altezza
+    //     di riferimento nota, in un contenitore FISSO e separato dal
+    //     tabellone vero e proprio (se lo svuotassimo e misurassimo dentro
+    //     di esso, per un istante la pagina diventerebbe più corta e il
+    //     browser forzerebbe lo scroll in cima — bug: "torna su" ad ogni
+    //     click — ecco perché il box di misura vive fuori dal flusso);
+    //  2) usa lo spazio verticale disponibile per calcolare, turno per
+    //     turno, la foto "ideale" (i turni successivi hanno celle più alte
+    //     — coprono più righe — quindi possono avere foto più grandi);
+    //  3) se usando quelle larghezze ideali tutte le colonne affiancate
+    //     sforerebbero la larghezza disponibile, le rimpicciolisce tutte
+    //     verso una larghezza minima comune (MIN_COL_W, quella che serve
+    //     comunque per non far sovrapporre l'etichetta "OTTAVI DI FINALE" e
+    //     simili) interpolando in proporzione a quanto ciascun turno
+    //     "vorrebbe" idealmente essere più grande degli altri — così gli
+    //     ottavi restano leggibili e la crescita verso la finale resta
+    //     visibile, solo più contenuta.
+    // Le righe della griglia (this.rowHeight) restano dimensionate sul solo
+    // budget verticale: se a mancare è la larghezza, la foto risulterà più
+    // piccola della riga e resterà semplicemente centrata con un po' di
+    // margine sopra/sotto, invece di sforare lo schermo.
+    _computeLayout() {
+      const leafRows = this.left.rounds[0].length;
+      const roundsPerSide = this.left.rounds.length;
+      const REF_THUMB = 80;
+      const COL_GAP = 10;
+      document.documentElement.style.setProperty('--thumb-h', REF_THUMB + 'px');
+      document.documentElement.style.setProperty('--col-gap', COL_GAP + 'px');
+
       const [longestA, longestB] = this._widestParticipants(2);
       const sample = { a: longestA, b: longestB, winner: null };
       const matchEl = this._renderMatch(sample, () => {});
       this._measureBox.appendChild(matchEl);
-      const height = Math.ceil(matchEl.getBoundingClientRect().height);
+      const sampleHeight = Math.ceil(matchEl.getBoundingClientRect().height);
       matchEl.remove();
-      return height > 0 ? height + 16 : ROW_HEIGHT_FALLBACK;
+      const chromeH = Math.max(0, sampleHeight - REF_THUMB * 2);
+      const CHROME_W = 16; // bordo + padding orizzontale di .match e .slot
+
+      const wrap = this.container.querySelector('.bracket-wrap');
+      const wrapH = wrap ? wrap.clientHeight : 0;
+      const wrapW = wrap ? wrap.clientWidth : 0;
+      const BRACKET_PADDING_V = 8; // deve rispecchiare il padding verticale di .bracket
+      const BRACKET_PADDING_H = 12; // deve rispecchiare il padding orizzontale di .bracket
+      const WRAP_PADDING_H = 32; // deve rispecchiare il padding orizzontale di .bracket-wrap
+      const ROUND_LABEL_H = 18; // altezza approssimativa dell'etichetta del turno
+      const CELL_PADDING = 12; // deve rispecchiare il padding verticale della cella (6px sopra + 6px sotto)
+      const MIN_THUMB = 22;
+      const MAX_THUMB = 300;
+      const MIN_COL_W = 100; // spazio minimo per cui etichetta del turno e nome restano leggibili
+
+      // --- Budget verticale: quanto può essere alta ciascuna riga-base ---
+      const availableH = Math.max(0, wrapH - BRACKET_PADDING_V - ROUND_LABEL_H);
+      const idealRowHeight = leafRows > 0 && availableH > 0
+        ? Math.floor(availableH / leafRows)
+        : ROW_HEIGHT_FALLBACK;
+
+      const spans = [];
+      for (let r = 0; r < roundsPerSide; r++) spans.push(Math.pow(2, r));
+      const spanSet = new Set(spans);
+      spanSet.add(leafRows); // la finale copre la stessa altezza della semifinale
+
+      const idealThumbBySpan = new Map();
+      spanSet.forEach((span) => {
+        const cellH = idealRowHeight * span;
+        const raw = Math.floor((cellH - CELL_PADDING - chromeH) / 2);
+        idealThumbBySpan.set(span, Math.min(MAX_THUMB, Math.max(MIN_THUMB, raw)));
+      });
+      const idealColWidth = (span) => (idealThumbBySpan.get(span) * 4 / 3) + CHROME_W;
+
+      // --- Budget orizzontale: tutte le colonne affiancate devono starci ---
+      // Ordine reale delle colonne: turni di sinistra, finale, turni di
+      // destra (specchiati) — in tutto roundsPerSide*2 + 1 colonne.
+      const allColumnSpans = [...spans, leafRows, ...[...spans].reverse()];
+      const gapsTotal = COL_GAP * (allColumnSpans.length - 1);
+      const availableW = Math.max(0, wrapW - WRAP_PADDING_H - BRACKET_PADDING_H - gapsTotal);
+
+      const totalIdeal = allColumnSpans.reduce((sum, span) => sum + Math.max(MIN_COL_W, idealColWidth(span)), 0);
+      const totalMin = MIN_COL_W * allColumnSpans.length;
+
+      let t; // 0 = tutte le colonne al minimo leggibile, 1 = tutte alla larghezza ideale
+      if (totalIdeal <= totalMin) {
+        t = availableW >= totalMin ? 1 : 0;
+      } else {
+        t = Math.max(0, Math.min(1, (availableW - totalMin) / (totalIdeal - totalMin)));
+      }
+
+      const sizeBySpan = new Map();
+      spanSet.forEach((span) => {
+        const idealW = Math.max(MIN_COL_W, idealColWidth(span));
+        const colW = Math.round(MIN_COL_W + t * (idealW - MIN_COL_W));
+        const thumbW = Math.max(0, colW - CHROME_W);
+        const widthDerivedThumbH = Math.max(MIN_THUMB, Math.floor(thumbW * 3 / 4));
+        // L'altezza "ideale" (quella che il budget verticale può garantire per
+        // questo turno) resta SEMPRE il tetto massimo: quando MIN_COL_W
+        // allarga la colonna oltre quanto l'immagine richiederebbe (per non
+        // far sovrapporre l'etichetta), quello spazio extra deve restare
+        // margine vuoto attorno alla foto, non essere usato per ingrandirla
+        // oltre l'altezza disponibile (altrimenti le righe si sovrappongono).
+        const thumbH = Math.min(idealThumbBySpan.get(span), widthDerivedThumbH);
+        sizeBySpan.set(span, { thumbH, colW });
+      });
+
+      // Salvati per _sizeForSpan, usato durante il render di ogni colonna.
+      this._sizeBySpan = sizeBySpan;
+      document.documentElement.style.setProperty('--thumb-h', sizeBySpan.get(1).thumbH + 'px');
+
+      // Se il minimo della foto ha dovuto "vincere" sul calcolo ideale (spazio
+      // davvero troppo poco), la riga-base va alzata di conseguenza:
+      // altrimenti il contenuto reale sforerebbe l'altezza di riga e le
+      // partite si sovrapporrebbero invece di restare semplicemente più
+      // compatte. In quel caso resta lo scroll interno di .bracket-wrap come
+      // ultima rete di sicurezza, piuttosto che corrompere il layout.
+      const leafThumb = sizeBySpan.get(1).thumbH;
+      const requiredRowHeight = chromeH + leafThumb * 2 + CELL_PADDING;
+      this.rowHeight = Math.max(idealRowHeight, requiredRowHeight, 1);
+      return this.rowHeight;
+    }
+
+    // Dimensione (foto + colonna) già calcolata da _computeLayout per un
+    // turno la cui cella copre "span" righe-base (2 per i quarti, 4 per la
+    // semifinale, ecc.).
+    _sizeForSpan(span) {
+      return this._sizeBySpan.get(span) || this._sizeBySpan.get(1);
     }
 
     _widestParticipants(n) {
@@ -265,7 +375,7 @@
       // dell'elemento misurato), quindi se il tabellone fosse già stato
       // svuotato la pagina risulterebbe momentaneamente più corta e il
       // browser forzerebbe lo scroll in cima.
-      this.rowHeight = this._measureRowHeight();
+      this.rowHeight = this._computeLayout();
 
       [...this.bracketEl.children].forEach((c) => {
         if (c !== this.svg) c.remove();
@@ -296,6 +406,9 @@
       sideObj.rounds.forEach((matches, r) => {
         const span = Math.pow(2, r);
         const col = el('div', r === 0 ? 'round round-leaf' : 'round');
+        const { thumbH, colW } = this._sizeForSpan(span);
+        col.style.setProperty('--thumb-h', thumbH + 'px');
+        col.style.width = colW + 'px';
 
         const label = el('div', 'round-label', roundLabel(matches.length * 2));
         col.appendChild(label);
@@ -336,6 +449,13 @@
 
     _renderFinalCol() {
       const col = el('div', 'round final-round final-col');
+      // La finale è il match più importante e, come la semifinale, ha a
+      // disposizione tutta l'altezza del tabellone: le diamo la stessa foto
+      // grande (leggermente di più, essendo un solo match da mostrare).
+      const leafRows = this.left.rounds[0].length;
+      const { thumbH, colW } = this._sizeForSpan(leafRows);
+      col.style.setProperty('--thumb-h', thumbH + 'px');
+      col.style.width = colW + 'px';
       const label = el('div', 'round-label', roundLabel(1));
       col.appendChild(label);
       const matchEl = this._renderMatch(this.final, (side) => this._selectFinalWinner(side));
