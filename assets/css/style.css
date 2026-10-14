@@ -22,9 +22,7 @@
   --shadow: 0 10px 30px rgba(0,0,0,0.35);
   --font-display: 'Poppins', 'Segoe UI', sans-serif;
   --font-body: 'Inter', 'Segoe UI', sans-serif;
-  --col-w: clamp(100px, 9.6vw, 160px);
-  --col-w-leaf: clamp(150px, 15.6vw, 240px);
-  --col-gap: clamp(8px, 1.6vw, 26px);
+  --row-gap: 10px;
 }
 
 *, *::before, *::after{ box-sizing: border-box; }
@@ -234,7 +232,7 @@ button{ font-family: inherit; }
    ========================================================= */
 
 .torneo-header{
-  padding: 10px 24px 4px;
+  padding: 6px 24px 3px;
   text-align: center;
   position: relative;
   flex: 0 0 auto;
@@ -265,35 +263,39 @@ button{ font-family: inherit; }
 
 .torneo-title{
   font-family: var(--font-display);
-  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  font-size: clamp(1rem, 2vw, 1.4rem);
   font-weight: 800;
-  margin: 2px 0 2px;
+  margin: 1px 0;
 }
 
 .torneo-title .emoji{ margin-right: 8px; }
 
 .torneo-desc{
   color: var(--text-dim);
-  max-width: 520px;
-  margin: 0 auto 2px;
-  font-size: 0.8rem;
+  max-width: 700px;
+  margin: 0 auto 1px;
+  font-size: 0.78rem;
+  line-height: 1.25;
 }
 
 .round-indicator{
   display: inline-block;
-  margin-top: 4px;
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent-2);
   background: rgba(245,158,11,0.12);
   border: 1px solid rgba(245,158,11,0.3);
-  padding: 4px 12px;
+  padding: 4px 14px;
   border-radius: 999px;
+  margin-top: 2px;
 }
 
-/* Bracket layout */
+/* Bracket layout: tabellone completo, 8 partite sopra e 8 sotto che
+   convergono verso la finale al centro. Ogni turno è una RIGA di partite
+   affiancate orizzontalmente (invece che una colonna impilata verticalmente)
+   e, dentro ogni partita, i due sfidanti sono affiancati l'uno all'altro. */
 .bracket-wrap{
   position: relative;
   padding: 6px 16px 8px;
@@ -303,80 +305,73 @@ button{ font-family: inherit; }
   min-height: 0;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .bracket{
   position: relative;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
   justify-content: center;
-  gap: var(--col-gap);
-  width: max-content;
-  min-width: 100%;
+  gap: var(--row-gap, 10px);
+  width: 100%;
   margin: 0 auto;
   padding: 4px 6px;
-  height: 100%;
 }
 
 .bracket svg.connectors{
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
   pointer-events: none;
-  overflow: visible;
+  z-index: 0;
 }
 
 .side{
   display: flex;
-  align-items: center;
-  gap: var(--col-gap);
+  flex-direction: column;
+  gap: var(--row-gap, 10px);
 }
 
 .round{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 6px;
-  width: var(--col-w);
-  flex-shrink: 0;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 96px;
   z-index: 1;
 }
 
-.round.round-leaf{
-  width: var(--col-w-leaf);
-}
-
-.final-col{
-  justify-content: center;
-  align-self: center;
-  width: calc(var(--col-w) * 1.05);
-}
-
 .round-label{
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 86px;
   text-align: center;
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   color: var(--text-dim);
-  margin-bottom: 2px;
   line-height: 1.15;
-  /* Se la colonna è molto stretta (poco spazio orizzontale) l'etichetta può
-     andare a capo su due righe invece di sforare nella colonna accanto. */
-  overflow-wrap: break-word;
+}
+
+.final-round.final-row .match{
+  border-color: rgba(245,158,11,0.4);
+  box-shadow: 0 0 0 1px rgba(245,158,11,0.15), var(--shadow);
 }
 
 .match{
   display: flex;
-  flex-direction: column;
-  gap: 3px;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 4px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 4px;
+  padding: 3px;
   box-shadow: var(--shadow);
   min-width: 0;
 }
@@ -384,8 +379,8 @@ button{ font-family: inherit; }
 .slot{
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  padding: 3px;
+  gap: 0;
+  padding: 2px;
   border-radius: var(--radius-sm);
   border: 1px solid transparent;
   transition: transform .18s ease, background .18s ease, border-color .18s ease, opacity .3s ease;
@@ -411,6 +406,23 @@ button{ font-family: inherit; }
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.slot .caption{
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  padding: 3px 4px 2px;
+  background: linear-gradient(to top, rgba(4,6,16,0.9) 0%, rgba(4,6,16,0.62) 70%, transparent 100%);
+  border-radius: 0 0 8px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  pointer-events: none;
+  /* Se il nome va su più righe di quante ne entrino sopra lo sfondo
+     sfumato, la didascalia cresce verso l'alto: può sporgere un po' sopra
+     la foto, ma il testo non deve MAI restare tagliato/invisibile. */
 }
 
 .slot .zoom-btn{
@@ -490,24 +502,25 @@ button{ font-family: inherit; }
 .slot .play-btn.playing{ background: var(--accent); }
 
 .slot .country{
-  font-size: 0.64rem;
+  font-size: 0.6rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--text-dim);
+  color: rgba(255,255,255,0.75);
   text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
 }
 
 .slot .name{
-  font-size: 0.74rem;
-  font-weight: 600;
-  color: var(--text);
-  line-height: 1.2;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.18;
   text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  overflow-wrap: break-word;
   width: 100%;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.85);
 }
 
 .slot.tbd{
@@ -515,15 +528,8 @@ button{ font-family: inherit; }
   opacity: 0.4;
 }
 
-.slot.tbd .thumb{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-dim);
-  font-size: 0.7rem;
-}
-
 .slot.tbd .name{ color: var(--text-dim); }
+.slot.tbd .caption{ background: rgba(4,6,16,0.45); }
 
 .slot.clickable{ cursor: pointer; }
 
@@ -543,8 +549,11 @@ button{ font-family: inherit; }
 .slot.winner::after{
   content: '✓';
   position: absolute;
-  right: 9px;
-  top: 9px;
+  /* Sporge leggermente fuori dall'angolo della card (invece di stare
+     dentro la foto) così non collide mai con la didascalia sovrapposta,
+     anche quando un nome lungo va su più righe e cresce verso l'alto. */
+  left: -6px;
+  top: -6px;
   width: 18px;
   height: 18px;
   border-radius: 50%;
@@ -581,12 +590,6 @@ button{ font-family: inherit; }
 .slot.eliminated.clickable:hover{
   opacity: 0.72;
   filter: grayscale(0.15);
-}
-
-/* Final / winner column emphasis */
-.round.final-round .match{
-  border-color: rgba(245,158,11,0.4);
-  box-shadow: 0 0 0 1px rgba(245,158,11,0.15), var(--shadow);
 }
 
 /* Winner overlay */
@@ -808,12 +811,8 @@ button{ font-family: inherit; }
   .torneo-header{ text-align: center; }
   .bracket-wrap{
     padding: 8px 14px;
-    scroll-snap-type: x proximity;
     -webkit-overflow-scrolling: touch;
   }
-  :root{ --col-w: clamp(100px, 25vw, 132px); --col-w-leaf: clamp(132px, 36vw, 180px); --col-gap: 12px; }
-
-  .round, .final-col{ scroll-snap-align: center; }
 
   .scroll-hint{
     display: block;

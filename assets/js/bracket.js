@@ -1,7 +1,8 @@
 /* =========================================================
-   Torneo — motore generico del tabellone (stile mondiale)
-   8 a sinistra e 8 a destra che convergono verso la finale
-   al centro. Usato da tutte le pagine di gioco.
+   Torneo — motore generico del tabellone (stile mondiale).
+   8 sopra e 8 sotto che convergono verso la finale al centro,
+   ciascuna partita con i due sfidanti affiancati orizzontalmente.
+   Usato da tutte le pagine di gioco.
    ========================================================= */
 
 (function (global) {
@@ -14,7 +15,7 @@
     1: 'Finale'
   };
 
-  const ROW_HEIGHT_FALLBACK = 260; // usato solo prima della prima misura reale
+  const ROW_H_FALLBACK = 180; // usato solo prima della prima misura reale
 
   function roundLabel(matchCount) {
     return ROUND_LABELS[matchCount] || `Turno (${matchCount})`;
@@ -60,59 +61,64 @@
 
       this.participants = participants;
       const half = participants.length / 2;
-      this.left = { rounds: this._buildRoundsFor(participants.slice(0, half)) };
-      this.right = { rounds: this._buildRoundsFor(participants.slice(half)) };
+      // "top" e "bottom" sono i due metà-tabelloni (sopra/sotto) che
+      // convergono verso la finale al centro — l'equivalente ruotato di
+      // "sinistra/destra".
+      this.top = { rounds: this._buildRoundsFor(participants.slice(0, half)) };
+      this.bottom = { rounds: this._buildRoundsFor(participants.slice(half)) };
       this.final = { a: null, b: null, winner: null };
-      this.rowHeight = ROW_HEIGHT_FALLBACK;
 
       this._renderShell();
       this.render();
     }
 
     // Calcola quanto grande può essere la foto di ciascun turno in modo che
-    // l'INTERO tabellone — tutte le colonne affiancate, tutte le righe di un
-    // lato impilate — entri nello schermo sia in verticale che in
-    // orizzontale, senza bisogno di scorrere.
-    //
-    // Procede così:
-    //  1) misura quanto spazio "di contorno" occupa un match a parità di
-    //     foto (padding, nome, bordi) rendendone uno di prova con un'altezza
-    //     di riferimento nota, in un contenitore FISSO e separato dal
-    //     tabellone vero e proprio (se lo svuotassimo e misurassimo dentro
-    //     di esso, per un istante la pagina diventerebbe più corta e il
-    //     browser forzerebbe lo scroll in cima — bug: "torna su" ad ogni
-    //     click — ecco perché il box di misura vive fuori dal flusso);
-    //  2) usa lo spazio verticale disponibile per calcolare, turno per
-    //     turno, la foto "ideale" (i turni successivi hanno celle più alte
-    //     — coprono più righe — quindi possono avere foto più grandi);
-    //  3) se usando quelle larghezze ideali tutte le colonne affiancate
-    //     sforerebbero la larghezza disponibile, le rimpicciolisce tutte
-    //     verso una larghezza minima comune (MIN_COL_W, quella che serve
-    //     comunque per non far sovrapporre l'etichetta "OTTAVI DI FINALE" e
-    //     simili) interpolando in proporzione a quanto ciascun turno
-    //     "vorrebbe" idealmente essere più grande degli altri — così gli
-    //     ottavi restano leggibili e la crescita verso la finale resta
-    //     visibile, solo più contenuta.
-    // Le righe della griglia (this.rowHeight) restano dimensionate sul solo
-    // budget verticale: se a mancare è la larghezza, la foto risulterà più
-    // piccola della riga e resterà semplicemente centrata con un po' di
-    // margine sopra/sotto, invece di sforare lo schermo.
+    // l'INTERO tabellone — tutte le righe-turno impilate, tutte le partite
+    // di una riga affiancate — entri nello schermo sia in verticale che in
+    // orizzontale, senza bisogno di scorrere. È la versione "ruotata di 90°"
+    // dello stesso identico algoritmo usato quando i turni erano colonne
+    // affiancate orizzontalmente invece di righe impilate verticalmente:
+    //  1) misura quanto spazio "di contorno" occupa una partita (ora
+    //     orizzontale: i due sfidanti affiancati) rendendone una di prova
+    //     con una foto di riferimento nota, in un contenitore FISSO e
+    //     separato dal tabellone vero e proprio (se lo svuotassimo e
+    //     misurassimo dentro di esso, per un istante la pagina diventerebbe
+    //     più corta e il browser forzerebbe lo scroll in cima — bug: "torna
+    //     su" ad ogni click — ecco perché il box di misura vive fuori dal
+    //     flusso);
+    //  2) l'asse "semplice" ora è la LARGHEZZA (le partite degli ottavi,
+    //     affiancate, dividono equamente lo spazio orizzontale disponibile:
+    //     è l'equivalente ruotato di come prima l'ALTEZZA si divideva per
+    //     le righe impilate); da lì calcola la foto "ideale" turno per
+    //     turno (i turni successivi hanno celle più larghe — coprono più
+    //     colonne-unità — quindi possono avere foto più grandi);
+    //  3) l'asse "vincolato" ora è l'ALTEZZA (le 7 righe-turno impilate
+    //     devono starci tutte): se le altezze ideali sforano, le
+    //     rimpicciolisce verso un'altezza minima comune interpolando in
+    //     proporzione, così gli ottavi restano leggibili e la crescita
+    //     verso la finale resta visibile, solo più contenuta.
     _computeLayout() {
-      const leafRows = this.left.rounds[0].length;
-      const roundsPerSide = this.left.rounds.length;
-      const REF_THUMB = 80;
-      const COL_GAP = 10;
+      const leafCols = this.top.rounds[0].length;
+      const roundsPerSide = this.top.rounds.length;
+      const REF_THUMB = 100;
+      const ROW_GAP = 10;
       document.documentElement.style.setProperty('--thumb-h', REF_THUMB + 'px');
-      document.documentElement.style.setProperty('--col-gap', COL_GAP + 'px');
+      document.documentElement.style.setProperty('--row-gap', ROW_GAP + 'px');
 
+      // Match di prova orizzontale (i due sfidanti affiancati): misuriamo
+      // l'ingombro "di contorno" attorno a una foto in altezza (chromeH) e
+      // attorno a due foto affiancate in larghezza (chromeW).
       const [longestA, longestB] = this._widestParticipants(2);
       const sample = { a: longestA, b: longestB, winner: null };
       const matchEl = this._renderMatch(sample, () => {});
       this._measureBox.appendChild(matchEl);
-      const sampleHeight = Math.ceil(matchEl.getBoundingClientRect().height);
+      const rect = matchEl.getBoundingClientRect();
+      const sampleHeight = Math.ceil(rect.height);
+      const sampleWidth = Math.ceil(rect.width);
       matchEl.remove();
-      const chromeH = Math.max(0, sampleHeight - REF_THUMB * 2);
-      const CHROME_W = 16; // bordo + padding orizzontale di .match e .slot
+      const refThumbW = REF_THUMB * 4 / 3;
+      const chromeH = Math.max(0, sampleHeight - REF_THUMB);
+      const chromeW = Math.max(0, sampleWidth - refThumbW * 2);
 
       const wrap = this.container.querySelector('.bracket-wrap');
       const wrapH = wrap ? wrap.clientHeight : 0;
@@ -120,83 +126,92 @@
       const BRACKET_PADDING_V = 8; // deve rispecchiare il padding verticale di .bracket
       const BRACKET_PADDING_H = 12; // deve rispecchiare il padding orizzontale di .bracket
       const WRAP_PADDING_H = 32; // deve rispecchiare il padding orizzontale di .bracket-wrap
-      const ROUND_LABEL_H = 18; // altezza approssimativa dell'etichetta del turno
-      const CELL_PADDING = 12; // deve rispecchiare il padding verticale della cella (6px sopra + 6px sotto)
-      const MIN_THUMB = 22;
-      const MAX_THUMB = 300;
-      const MIN_COL_W = 100; // spazio minimo per cui etichetta del turno e nome restano leggibili
+      const LABEL_W = 96; // spazio fisso per l'etichetta a sinistra di ogni riga-turno
+      const MIN_THUMB = 44; // il segno di spunta ora sporge fuori dall'angolo della card, non serve più tenerlo grande per evitare sovrapposizioni con la didascalia
+      const MAX_THUMB = 320;
+      const MIN_ROW_H = 58; // altezza minima di una riga-turno (foto minima + contorno)
 
-      // --- Budget verticale: quanto può essere alta ciascuna riga-base ---
-      const availableH = Math.max(0, wrapH - BRACKET_PADDING_V - ROUND_LABEL_H);
-      const idealRowHeight = leafRows > 0 && availableH > 0
-        ? Math.floor(availableH / leafRows)
-        : ROW_HEIGHT_FALLBACK;
+      // --- Budget orizzontale (asse semplice): le partite della riga più
+      // affollata (gli ottavi, leafCols partite affiancate) fissano
+      // un'unità di larghezza costante, condivisa da ogni riga-turno. ---
+      const availableW = Math.max(0, wrapW - WRAP_PADDING_H - BRACKET_PADDING_H - LABEL_W);
+      const unitW = leafCols > 0 ? Math.floor(availableW / leafCols) : availableW;
 
       const spans = [];
       for (let r = 0; r < roundsPerSide; r++) spans.push(Math.pow(2, r));
       const spanSet = new Set(spans);
-      spanSet.add(leafRows); // la finale copre la stessa altezza della semifinale
+      spanSet.add(leafCols); // la finale copre la stessa larghezza della semifinale
 
-      const idealThumbBySpan = new Map();
+      // Larghezza "ideale" della foto per ciascun turno, vincolata solo
+      // dalla larghezza disponibile (semplice/diretta, come prima lo era
+      // l'altezza-riga).
+      const idealThumbWBySpan = new Map();
       spanSet.forEach((span) => {
-        const cellH = idealRowHeight * span;
-        const raw = Math.floor((cellH - CELL_PADDING - chromeH) / 2);
-        idealThumbBySpan.set(span, Math.min(MAX_THUMB, Math.max(MIN_THUMB, raw)));
+        const cellW = unitW * span;
+        const raw = Math.floor((cellW - chromeW) / 2);
+        idealThumbWBySpan.set(span, Math.min(MAX_THUMB * 4 / 3, Math.max(MIN_THUMB * 4 / 3, raw)));
       });
-      const idealColWidth = (span) => (idealThumbBySpan.get(span) * 4 / 3) + CHROME_W;
+      const idealRowH = (span) => (idealThumbWBySpan.get(span) * 3 / 4) + chromeH;
 
-      // --- Budget orizzontale: tutte le colonne affiancate devono starci ---
-      // Ordine reale delle colonne: turni di sinistra, finale, turni di
-      // destra (specchiati) — in tutto roundsPerSide*2 + 1 colonne.
-      const allColumnSpans = [...spans, leafRows, ...[...spans].reverse()];
-      const gapsTotal = COL_GAP * (allColumnSpans.length - 1);
-      const availableW = Math.max(0, wrapW - WRAP_PADDING_H - BRACKET_PADDING_H - gapsTotal);
+      // --- Budget verticale (asse vincolato): tutte le righe-turno
+      // impilate (ottavi, quarti, semifinale, finale, semifinale, quarti,
+      // ottavi) devono starci. Agli OTTAVI (il primo turno) viene data la
+      // PRIORITÀ: prendono tutta l'altezza che il loro ideale — vincolato
+      // solo dalla larghezza della colonna — consente, anche a scapito
+      // della crescita progressiva dei turni successivi. I turni
+      // successivi si dividono quel che resta. ---
+      const allRowSpans = [...spans, leafCols, ...[...spans].reverse()];
+      const gapsTotal = ROW_GAP * (allRowSpans.length - 1);
+      const availableH = Math.max(0, wrapH - BRACKET_PADDING_V - gapsTotal);
 
-      const totalIdeal = allColumnSpans.reduce((sum, span) => sum + Math.max(MIN_COL_W, idealColWidth(span)), 0);
-      const totalMin = MIN_COL_W * allColumnSpans.length;
+      const ottaviRows = allRowSpans.filter((s) => s === 1).length;
+      const otherRowSpans = allRowSpans.filter((s) => s !== 1);
 
-      let t; // 0 = tutte le colonne al minimo leggibile, 1 = tutte alla larghezza ideale
-      if (totalIdeal <= totalMin) {
-        t = availableW >= totalMin ? 1 : 0;
+      const ottaviIdealH = Math.max(MIN_ROW_H, idealRowH(1));
+      const otherMinTotal = MIN_ROW_H * otherRowSpans.length;
+      const ottaviBudget = Math.max(MIN_ROW_H * ottaviRows, availableH - otherMinTotal);
+      const ottaviRowH = Math.min(ottaviIdealH, ottaviBudget / ottaviRows);
+
+      const remainingH = Math.max(0, availableH - ottaviRowH * ottaviRows);
+      const otherIdealTotal = otherRowSpans.reduce((sum, span) => sum + Math.max(MIN_ROW_H, idealRowH(span)), 0);
+
+      let t; // 0 = turni successivi al minimo, 1 = turni successivi al loro ideale
+      if (otherIdealTotal <= otherMinTotal) {
+        t = remainingH >= otherMinTotal ? 1 : 0;
       } else {
-        t = Math.max(0, Math.min(1, (availableW - totalMin) / (totalIdeal - totalMin)));
+        t = Math.max(0, Math.min(1, (remainingH - otherMinTotal) / (otherIdealTotal - otherMinTotal)));
       }
 
       const sizeBySpan = new Map();
       spanSet.forEach((span) => {
-        const idealW = Math.max(MIN_COL_W, idealColWidth(span));
-        const colW = Math.round(MIN_COL_W + t * (idealW - MIN_COL_W));
-        const thumbW = Math.max(0, colW - CHROME_W);
-        const widthDerivedThumbH = Math.max(MIN_THUMB, Math.floor(thumbW * 3 / 4));
-        // L'altezza "ideale" (quella che il budget verticale può garantire per
-        // questo turno) resta SEMPRE il tetto massimo: quando MIN_COL_W
-        // allarga la colonna oltre quanto l'immagine richiederebbe (per non
-        // far sovrapporre l'etichetta), quello spazio extra deve restare
-        // margine vuoto attorno alla foto, non essere usato per ingrandirla
-        // oltre l'altezza disponibile (altrimenti le righe si sovrappongono).
-        const thumbH = Math.min(idealThumbBySpan.get(span), widthDerivedThumbH);
-        sizeBySpan.set(span, { thumbH, colW });
+        const rowH = span === 1
+          ? Math.round(ottaviRowH)
+          : Math.round(MIN_ROW_H + t * (Math.max(MIN_ROW_H, idealRowH(span)) - MIN_ROW_H));
+        const heightDerivedThumbH = Math.max(MIN_THUMB, Math.floor(rowH - chromeH));
+        // La larghezza "ideale" (quella che il budget orizzontale può
+        // garantire per questo turno) resta SEMPRE il tetto massimo: quando
+        // MIN_ROW_H allarga la riga oltre quanto l'immagine richiederebbe,
+        // quello spazio extra resta margine vuoto, non viene usato per
+        // ingrandirla oltre la larghezza disponibile (altrimenti le
+        // partite affiancate sforerebbero lo schermo).
+        const idealThumbH = idealThumbWBySpan.get(span) * 3 / 4;
+        const thumbH = Math.round(Math.max(MIN_THUMB, Math.min(idealThumbH, heightDerivedThumbH)));
+        // Se il pavimento MIN_THUMB ha forzato una foto più alta di quanto
+        // l'altezza di riga interpolata prevedesse, la riga deve crescere
+        // di conseguenza: altrimenti la partita del turno successivo le
+        // si sovrapporrebbe.
+        const finalRowH = Math.max(rowH, thumbH + chromeH);
+        sizeBySpan.set(span, { thumbH, rowH: finalRowH });
       });
 
-      // Salvati per _sizeForSpan, usato durante il render di ogni colonna.
       this._sizeBySpan = sizeBySpan;
+      this._unitW = unitW;
       document.documentElement.style.setProperty('--thumb-h', sizeBySpan.get(1).thumbH + 'px');
-
-      // Se il minimo della foto ha dovuto "vincere" sul calcolo ideale (spazio
-      // davvero troppo poco), la riga-base va alzata di conseguenza:
-      // altrimenti il contenuto reale sforerebbe l'altezza di riga e le
-      // partite si sovrapporrebbero invece di restare semplicemente più
-      // compatte. In quel caso resta lo scroll interno di .bracket-wrap come
-      // ultima rete di sicurezza, piuttosto che corrompere il layout.
-      const leafThumb = sizeBySpan.get(1).thumbH;
-      const requiredRowHeight = chromeH + leafThumb * 2 + CELL_PADDING;
-      this.rowHeight = Math.max(idealRowHeight, requiredRowHeight, 1);
-      return this.rowHeight;
     }
 
-    // Dimensione (foto + colonna) già calcolata da _computeLayout per un
-    // turno la cui cella copre "span" righe-base (2 per i quarti, 4 per la
-    // semifinale, ecc.).
+    // Dimensione (foto + riga) già calcolata da _computeLayout per un
+    // turno la cui cella copre "span" unità-colonna (2 per i quarti, 4 per
+    // la semifinale, ecc.).
     _sizeForSpan(span) {
       return this._sizeBySpan.get(span) || this._sizeBySpan.get(1);
     }
@@ -243,7 +258,7 @@
           <h1 class="torneo-title"><span class="emoji">${this.emoji}</span>${this.title}</h1>
           <p class="torneo-desc">${this.description}</p>
           <span class="round-indicator" id="roundIndicator"></span>
-          <p class="scroll-hint">← Scorri per vedere tutti i turni →</p>
+          <p class="scroll-hint">↕ Scorri per vedere tutti i turni ↕</p>
         </header>
         <div class="bracket-wrap">
           <div class="bracket" id="bracketEl">
@@ -278,6 +293,10 @@
       this._measureBox.style.left = '-9999px';
       this._measureBox.style.visibility = 'hidden';
       this._measureBox.style.pointerEvents = 'none';
+      // Non ereditare larghezze fisse da colonne/righe: qui dentro dobbiamo
+      // misurare la dimensione NATURALE del match, non quella imposta da un
+      // contenitore — altrimenti la misura risulterebbe falsata.
+      this._measureBox.style.width = 'max-content';
       document.body.appendChild(this._measureBox);
 
       // Riproduzione audio (categorie tipo "musica"): un solo elemento
@@ -375,23 +394,23 @@
       // dell'elemento misurato), quindi se il tabellone fosse già stato
       // svuotato la pagina risulterebbe momentaneamente più corta e il
       // browser forzerebbe lo scroll in cima.
-      this.rowHeight = this._computeLayout();
+      this._computeLayout();
 
       [...this.bracketEl.children].forEach((c) => {
         if (c !== this.svg) c.remove();
       });
 
-      const left = this._renderSide('left');
-      const finalCol = this._renderFinalCol();
-      const right = this._renderSide('right');
+      const top = this._renderSide('top');
+      const finalRow = this._renderFinalRow();
+      const bottom = this._renderSide('bottom');
 
-      this.bracketEl.appendChild(left.sideEl);
-      this.bracketEl.appendChild(finalCol.colEl);
-      this.bracketEl.appendChild(right.sideEl);
+      this.bracketEl.appendChild(top.sideEl);
+      this.bracketEl.appendChild(finalRow.rowEl);
+      this.bracketEl.appendChild(bottom.sideEl);
 
-      this._leftRoundEls = left.roundEls;
-      this._rightRoundEls = right.roundEls;
-      this._finalMatchEl = finalCol.matchEl;
+      this._topRoundEls = top.roundEls;
+      this._bottomRoundEls = bottom.roundEls;
+      this._finalMatchEl = finalRow.matchEl;
 
       this._updateRoundIndicator();
       requestAnimationFrame(() => this._drawConnectors());
@@ -401,22 +420,22 @@
       const sideObj = this[key];
       const totalLeaves = sideObj.rounds[0].length;
       const sideEl = el('div', 'side side-' + key);
-      const columns = [];
+      const rows = [];
 
       sideObj.rounds.forEach((matches, r) => {
         const span = Math.pow(2, r);
-        const col = el('div', r === 0 ? 'round round-leaf' : 'round');
-        const { thumbH, colW } = this._sizeForSpan(span);
-        col.style.setProperty('--thumb-h', thumbH + 'px');
-        col.style.width = colW + 'px';
+        const row = el('div', r === 0 ? 'round round-leaf' : 'round');
+        const { thumbH, rowH } = this._sizeForSpan(span);
+        row.style.setProperty('--thumb-h', thumbH + 'px');
+        row.style.height = rowH + 'px';
 
         const label = el('div', 'round-label', roundLabel(matches.length * 2));
-        col.appendChild(label);
+        row.appendChild(label);
 
-        const grid = el('div');
+        const grid = el('div', 'round-grid');
         grid.style.display = 'grid';
-        grid.style.gridTemplateRows = `repeat(${totalLeaves}, ${this.rowHeight}px)`;
-        grid.style.gridTemplateColumns = 'minmax(0, 1fr)';
+        grid.style.gridTemplateColumns = `repeat(${totalLeaves}, ${this._unitW}px)`;
+        grid.style.gridTemplateRows = 'minmax(0, 1fr)';
         grid.style.rowGap = '0';
         grid.style.columnGap = '0';
 
@@ -424,10 +443,10 @@
         matches.forEach((m, j) => {
           const start = j * span + 1;
           const cell = el('div');
-          cell.style.gridRow = `${start} / span ${span}`;
+          cell.style.gridColumn = `${start} / span ${span}`;
           cell.style.display = 'flex';
-          cell.style.alignItems = 'center';
-          cell.style.padding = '6px 0';
+          cell.style.justifyContent = 'center';
+          cell.style.padding = '0 2px';
 
           const matchEl = this._renderMatch(m, (side) => this._selectSideWinner(key, r, j, side));
           matchEls.push(matchEl);
@@ -435,32 +454,32 @@
           grid.appendChild(cell);
         });
 
-        col.appendChild(grid);
-        columns.push({ colEl: col, matchEls });
+        row.appendChild(grid);
+        rows.push({ rowEl: row, matchEls });
       });
 
-      // sul lato destro le colonne vanno mostrate specularmente:
-      // la semifinale vicino al centro, gli ottavi verso l'esterno.
-      const order = key === 'right' ? [...columns].reverse() : columns;
-      order.forEach((c) => sideEl.appendChild(c.colEl));
+      // sul lato "bottom" le righe vanno specchiate: la semifinale vicino
+      // al centro, gli ottavi verso il bordo esterno (in basso).
+      const order = key === 'bottom' ? [...rows].reverse() : rows;
+      order.forEach((rw) => sideEl.appendChild(rw.rowEl));
 
-      return { sideEl, roundEls: columns.map((c) => c.matchEls) };
+      return { sideEl, roundEls: rows.map((rw) => rw.matchEls) };
     }
 
-    _renderFinalCol() {
-      const col = el('div', 'round final-round final-col');
-      // La finale è il match più importante e, come la semifinale, ha a
-      // disposizione tutta l'altezza del tabellone: le diamo la stessa foto
-      // grande (leggermente di più, essendo un solo match da mostrare).
-      const leafRows = this.left.rounds[0].length;
-      const { thumbH, colW } = this._sizeForSpan(leafRows);
-      col.style.setProperty('--thumb-h', thumbH + 'px');
-      col.style.width = colW + 'px';
+    _renderFinalRow() {
+      const row = el('div', 'round final-round final-row');
+      // La finale è la partita più importante e, come la semifinale, ha a
+      // disposizione tutta la larghezza del tabellone: le diamo la stessa
+      // foto grande.
+      const leafCols = this.top.rounds[0].length;
+      const { thumbH, rowH } = this._sizeForSpan(leafCols);
+      row.style.setProperty('--thumb-h', thumbH + 'px');
+      row.style.height = rowH + 'px';
       const label = el('div', 'round-label', roundLabel(1));
-      col.appendChild(label);
+      row.appendChild(label);
       const matchEl = this._renderMatch(this.final, (side) => this._selectFinalWinner(side));
-      col.appendChild(matchEl);
-      return { colEl: col, matchEl };
+      row.appendChild(matchEl);
+      return { rowEl: row, matchEl };
     }
 
     _renderMatch(match, onSelect) {
@@ -521,18 +540,25 @@
           this._openLightbox(participant);
         });
         thumb.appendChild(zoomBtn);
-      } else {
-        thumb.textContent = 'TBD';
       }
 
+      // Nome (ed eventuale paese) come didascalia sovrapposta in basso sulla
+      // foto, invece che in un blocco separato: libera spazio per la foto.
+      const caption = el('div', 'caption');
+      if (participant && participant.country) {
+        caption.appendChild(el('div', 'country', participant.country));
+      }
       const name = el('div', 'name', isTbd ? 'Da definire' : participant.name);
       if (!isTbd) name.title = participant.name;
+      caption.appendChild(name);
 
       slot.appendChild(thumb);
-      if (participant && participant.country) {
-        slot.appendChild(el('div', 'country', participant.country));
-      }
-      slot.appendChild(name);
+      // La didascalia è "fratella" della foto (non dentro di essa): la foto
+      // ha overflow:hidden per gli angoli arrotondati, ma un nome lungo che
+      // va su più righe non deve mai restare tagliato/invisibile sotto quel
+      // ritaglio — meglio che sporga leggermente sopra la foto che perdere
+      // del testo.
+      slot.appendChild(caption);
 
       if (selectable) {
         slot.addEventListener('click', () => onSelect(side));
@@ -548,7 +574,7 @@
 
     // Selezionare uno sfidante è sempre permesso, anche se il match era già
     // deciso: se si sceglie chi aveva già vinto, la scelta viene annullata
-    // (il match torna indecisо); se si sceglie l'altro, il vincitore viene
+    // (il match torna indeciso); se si sceglie l'altro, il vincitore viene
     // scambiato. In entrambi i casi, tutto ciò che nei turni successivi
     // dipendeva dal vecchio vincitore viene ripulito a cascata, così il
     // tabellone resta sempre coerente a qualunque turno si torni indietro.
@@ -577,7 +603,7 @@
         const nextSlot = matchIndex % 2 === 0 ? 'a' : 'b';
         nextMatch[nextSlot] = winner;
       } else {
-        this.final[key === 'left' ? 'a' : 'b'] = winner;
+        this.final[key === 'top' ? 'a' : 'b'] = winner;
       }
     }
 
@@ -601,7 +627,7 @@
           this.final.winner = null;
           this.overlay.classList.remove('show');
         }
-        this.final[key === 'left' ? 'a' : 'b'] = null;
+        this.final[key === 'top' ? 'a' : 'b'] = null;
       }
     }
 
@@ -638,10 +664,10 @@
         this.roundIndicator.textContent = 'Torneo completato';
         return;
       }
-      const leftIdx = this._sideProgress('left');
-      const rightIdx = this._sideProgress('right');
-      const minIdx = Math.min(leftIdx, rightIdx);
-      const sideRounds = this.left.rounds;
+      const topIdx = this._sideProgress('top');
+      const bottomIdx = this._sideProgress('bottom');
+      const minIdx = Math.min(topIdx, bottomIdx);
+      const sideRounds = this.top.rounds;
 
       if (minIdx < sideRounds.length) {
         this.roundIndicator.textContent = roundLabel(sideRounds[minIdx].length * 2);
@@ -655,13 +681,13 @@
       this.svg.setAttribute('height', this.bracketEl.scrollHeight);
       this.svg.innerHTML = '';
 
-      this._drawSideConnectors(this._leftRoundEls);
-      this._drawSideConnectors(this._rightRoundEls);
+      this._drawSideConnectors(this._topRoundEls);
+      this._drawSideConnectors(this._bottomRoundEls);
 
-      const leftLast = this._leftRoundEls[this._leftRoundEls.length - 1][0];
-      const rightLast = this._rightRoundEls[this._rightRoundEls.length - 1][0];
-      if (leftLast) this._drawElbow(leftLast, leftLast, this._finalMatchEl);
-      if (rightLast) this._drawElbow(rightLast, rightLast, this._finalMatchEl);
+      const topLast = this._topRoundEls[this._topRoundEls.length - 1][0];
+      const bottomLast = this._bottomRoundEls[this._bottomRoundEls.length - 1][0];
+      if (topLast) this._drawElbow(topLast, topLast, this._finalMatchEl);
+      if (bottomLast) this._drawElbow(bottomLast, bottomLast, this._finalMatchEl);
     }
 
     _drawSideConnectors(roundEls) {
@@ -677,23 +703,28 @@
       }
     }
 
+    // Versione ruotata di 90° del connettore "a gomito": invece di due
+    // sorgenti impilate verticalmente che raggiungono orizzontalmente una
+    // spina comune (e poi giù al bersaglio), qui due sorgenti affiancate
+    // orizzontalmente raggiungono verticalmente una spina comune (e poi di
+    // lato al bersaglio).
     _drawElbow(s1El, s2El, targetEl) {
       const bracketRect = this.bracketEl.getBoundingClientRect();
       const r1 = s1El.getBoundingClientRect();
       const r2 = s2El.getBoundingClientRect();
       const rt = targetEl.getBoundingClientRect();
 
-      const towardRight = r1.left + r1.width / 2 <= rt.left + rt.width / 2;
+      const towardBottom = r1.top + r1.height / 2 <= rt.top + rt.height / 2;
 
-      const x1 = (towardRight ? r1.right : r1.left) - bracketRect.left;
-      const y1 = r1.top + r1.height / 2 - bracketRect.top;
-      const y2 = r2.top + r2.height / 2 - bracketRect.top;
-      const xt = (towardRight ? rt.left : rt.right) - bracketRect.left;
-      const yt = rt.top + rt.height / 2 - bracketRect.top;
-      const midX = x1 + (xt - x1) / 2;
+      const y1 = (towardBottom ? r1.bottom : r1.top) - bracketRect.top;
+      const x1 = r1.left + r1.width / 2 - bracketRect.left;
+      const x2 = r2.left + r2.width / 2 - bracketRect.left;
+      const yt = (towardBottom ? rt.top : rt.bottom) - bracketRect.top;
+      const xt = rt.left + rt.width / 2 - bracketRect.left;
+      const midY = y1 + (yt - y1) / 2;
 
       const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      const d = `M${x1},${y1} L${midX},${y1} L${midX},${y2} M${x1},${y2} L${midX},${y2} M${midX},${(y1 + y2) / 2} L${xt},${yt}`;
+      const d = `M${x1},${y1} L${x1},${midY} L${x2},${midY} M${x2},${y1} L${x2},${midY} M${(x1 + x2) / 2},${midY} L${xt},${yt}`;
       path.setAttribute('d', d);
       path.setAttribute('stroke', 'rgba(255,255,255,0.18)');
       path.setAttribute('stroke-width', '2');
