@@ -1522,7 +1522,12 @@
         { file: 'IMG_3684.JPG', name: 'Foto 64' },
         { file: 'IMG_3837.JPG', name: 'Foto 65' },
         { file: 'IMG_5790.JPEG', name: 'Foto 66' },
-        { file: 'P1010891.jpg', name: 'Foto 67' }
+        { file: 'P1010891.jpg', name: 'Foto 67' },
+        { file: '1780.jpeg', name: 'Foto 68' },
+        { file: '507.PNG', name: 'Foto 69' },
+        { file: '63.PNG', name: 'Foto 70' },
+        { file: 'IMG_1627.PNG', name: 'Foto 71' },
+        { file: 'P1014675.JPG', name: 'Foto 72' }
       ]
     },
 
@@ -2626,44 +2631,9 @@
         { file: "vacanza_in_puglia.jpg", name: "Vacanza in Puglia" },
         { file: "vacanza_in_sardegna.JPEG", name: "Vacanza in Sardegna" },
         { file: "vacanza_in_sicilia.JPG", name: "Vacanza in Sicilia" },
-        { file: "vacanza_in_srilanka.jpg", name: "Vacanza in Sri Lanka" }
-      ]
-    },
-
-    regali_ricevuti: {
-      title: "Regalo Più Bello Ricevuto",
-      emoji: "🎁",
-      description: "Qual è il regalo più bello che hai ricevuto? Scegli il tuo preferito ad ogni sfida fino alla finale.",
-      folder: "assets/images/regali_ricevuti",
-      items: [
-        { file: "regalo_01.jpg", name: "Regalo #1" },
-        { file: "regalo_02.jpg", name: "Regalo #2" },
-        { file: "regalo_03.jpg", name: "Regalo #3" },
-        { file: "regalo_04.jpg", name: "Regalo #4" },
-        { file: "regalo_05.jpg", name: "Regalo #5" },
-        { file: "regalo_06.jpg", name: "Regalo #6" },
-        { file: "regalo_07.jpg", name: "Regalo #7" },
-        { file: "regalo_08.jpg", name: "Regalo #8" },
-        { file: "regalo_09.jpg", name: "Regalo #9" },
-        { file: "regalo_10.jpg", name: "Regalo #10" },
-        { file: "regalo_11.jpg", name: "Regalo #11" },
-        { file: "regalo_12.jpg", name: "Regalo #12" },
-        { file: "regalo_13.jpg", name: "Regalo #13" },
-        { file: "regalo_14.jpg", name: "Regalo #14" },
-        { file: "regalo_15.jpg", name: "Regalo #15" },
-        { file: "regalo_16.jpg", name: "Regalo #16" },
-        { file: "regalo_17.jpg", name: "Regalo #17" },
-        { file: "regalo_18.jpg", name: "Regalo #18" },
-        { file: "regalo_19.jpg", name: "Regalo #19" },
-        { file: "regalo_20.jpg", name: "Regalo #20" },
-        { file: "regalo_21.jpg", name: "Regalo #21" },
-        { file: "regalo_22.jpg", name: "Regalo #22" },
-        { file: "regalo_23.jpg", name: "Regalo #23" },
-        { file: "regalo_24.jpg", name: "Regalo #24" },
-        { file: "regalo_25.jpg", name: "Regalo #25" },
-        { file: "regalo_26.jpg", name: "Regalo #26" },
-        { file: "regalo_27.jpg", name: "Regalo #27" },
-        { file: "regalo_28.jpg", name: "Regalo #28" }
+        { file: "vacanza_in_srilanka.jpg", name: "Vacanza in Sri Lanka" },
+        { file: "prime_chiacchiere.jpg", name: "Prime Chiacchiere" },
+        { file: "primo_bacio.jpg", name: "Primo Bacio" }
       ]
     },
 
@@ -4229,7 +4199,10 @@
         { file: "P1014689.JPG", name: "Foto 55" },
         { file: "P1016020.JPG", name: "Foto 56" },
         { file: "WhatsApp Image 2019-08-23 at 17.10.40.jpeg", name: "Foto 57" },
-        { file: "WhatsApp Image 2019-08-23 at 17.11.13.jpeg", name: "Foto 58" }
+        { file: "WhatsApp Image 2019-08-23 at 17.11.13.jpeg", name: "Foto 58" },
+        { file: "P1013274.JPG", name: "Foto 59" },
+        { file: "P1014205.JPG", name: "Foto 60" },
+        { file: "P1016205.JPG", name: "Foto 61" }
       ]
     }
   };
