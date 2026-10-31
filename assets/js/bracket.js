@@ -43,6 +43,7 @@
       this.emoji = opts.emoji || '🏆';
       this.description = opts.description || '';
       this.backLink = opts.backLink || 'index.html';
+      this.categoryKey = opts.categoryKey || null;
       this.container = document.getElementById(opts.containerId || 'app');
       this.random = opts.random !== false;
 
@@ -277,7 +278,29 @@
             <h2 id="winnerName"></h2>
             <button class="btn winner-play-btn" id="winnerPlayBtn" type="button" aria-label="Riproduci il brano vincitore" style="display:none"></button>
             <p class="sub">Grazie per aver giocato!</p>
-            <button class="btn btn-primary" id="restartBtn">↻ Rigioca</button>
+            <div class="winner-actions">
+              <button class="btn" id="podiumBtn" type="button">🏅 Podio</button>
+              <button class="btn" id="historyBtn" type="button">📜 Storico</button>
+              <button class="btn btn-primary" id="restartBtn" type="button">↻ Rigioca</button>
+            </div>
+          </div>
+        </div>
+        <div class="podium-overlay" id="podiumOverlay">
+          <button class="lightbox-close" id="podiumClose" aria-label="Chiudi il podio">✕</button>
+          <div class="podium-card">
+            <canvas id="podiumCanvas"></canvas>
+            <div class="podium-actions">
+              <button class="btn btn-primary" id="podiumDownloadBtn" type="button">📥 Salva Immagine</button>
+              <button class="btn" id="podiumShareBtn" type="button" style="display:none">📤 Condividi</button>
+            </div>
+          </div>
+        </div>
+        <div class="history-overlay" id="historyOverlay">
+          <button class="lightbox-close" id="historyClose" aria-label="Chiudi lo storico">✕</button>
+          <div class="history-card">
+            <h2>📜 Storico Risultati</h2>
+            <div class="history-fav" id="historyFav"></div>
+            <div class="history-list" id="historyList"></div>
           </div>
         </div>
         <div class="lightbox" id="lightbox">
@@ -313,6 +336,8 @@
       this.lightbox = this.container.querySelector('#lightbox');
       this.lightboxImg = this.container.querySelector('#lightboxImg');
       this.lightboxName = this.container.querySelector('#lightboxName');
+      this.podiumOverlay = this.container.querySelector('#podiumOverlay');
+      this.historyOverlay = this.container.querySelector('#historyOverlay');
 
       this.container.querySelector('#restartBtn').addEventListener('click', () => {
         location.reload();
@@ -332,10 +357,30 @@
         if (e.target === this.overlay) this.overlay.classList.remove('show');
       });
 
+      this.container.querySelector('#podiumBtn').addEventListener('click', () => this._openPodium());
+      this.container.querySelector('#podiumClose').addEventListener('click', () => {
+        this.podiumOverlay.classList.remove('show');
+      });
+      this.podiumOverlay.addEventListener('click', (e) => {
+        if (e.target === this.podiumOverlay) this.podiumOverlay.classList.remove('show');
+      });
+      this.container.querySelector('#podiumDownloadBtn').addEventListener('click', () => this._downloadPodiumImage());
+      this.container.querySelector('#podiumShareBtn').addEventListener('click', () => this._sharePodiumImage());
+
+      this.container.querySelector('#historyBtn').addEventListener('click', () => this._openHistory());
+      this.container.querySelector('#historyClose').addEventListener('click', () => {
+        this.historyOverlay.classList.remove('show');
+      });
+      this.historyOverlay.addEventListener('click', (e) => {
+        if (e.target === this.historyOverlay) this.historyOverlay.classList.remove('show');
+      });
+
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
           this._closeLightbox();
           this.overlay.classList.remove('show');
+          this.podiumOverlay.classList.remove('show');
+          this.historyOverlay.classList.remove('show');
         }
       });
 
@@ -759,6 +804,331 @@
       overlay.querySelector('#winnerName').textContent = winner.name;
       overlay.classList.add('show');
       this._confetti();
+
+      this._lastPodium = this._computePodium();
+      this._saveHistoryRecord(this._lastPodium);
+    }
+
+    // --- Podio e storico -------------------------------------------------
+
+    // 2° posto = l'altro finalista. 3° posto = i due perdenti di semifinale
+    // (uno per lato): non esiste una finalina, quindi li trattiamo come
+    // ex aequo invece di sceglierne uno arbitrariamente.
+    _computePodium() {
+      const first = this.final.winner;
+      const second = first === this.final.a ? this.final.b : this.final.a;
+
+      const third = [this.top, this.bottom]
+        .map((side) => side.rounds[side.rounds.length - 1][0])
+        .filter((m) => m && m.winner)
+        .map((m) => (m.winner === m.a ? m.b : m.a))
+        .filter(Boolean);
+
+      return { first, second, third };
+    }
+
+    _historyStorageKey() { return 'torneoHistory'; }
+
+    _loadHistoryStore() {
+      try {
+        return JSON.parse(localStorage.getItem(this._historyStorageKey())) || {};
+      } catch (e) {
+        return {};
+      }
+    }
+
+    _saveHistoryRecord(podium) {
+      if (!this.categoryKey) return;
+      try {
+        const store = this._loadHistoryStore();
+        const list = store[this.categoryKey] || [];
+        list.unshift({
+          date: new Date().toISOString(),
+          winner: { id: podium.first.id, name: podium.first.name },
+          second: podium.second ? { id: podium.second.id, name: podium.second.name } : null,
+          third: podium.third.map((p) => ({ id: p.id, name: p.name }))
+        });
+        store[this.categoryKey] = list.slice(0, 50);
+        localStorage.setItem(this._historyStorageKey(), JSON.stringify(store));
+      } catch (e) {
+        // storage non disponibile (modalità privata, quota piena, ecc.): va bene, non è critico.
+      }
+    }
+
+    _getHistory() {
+      if (!this.categoryKey) return [];
+      return this._loadHistoryStore()[this.categoryKey] || [];
+    }
+
+    _openHistory() {
+      const favEl = this.container.querySelector('#historyFav');
+      const listEl = this.container.querySelector('#historyList');
+      const history = this._getHistory();
+
+      if (!history.length) {
+        favEl.innerHTML = '';
+        listEl.innerHTML = '<p class="history-empty">Nessuna partita salvata ancora per questa categoria.</p>';
+      } else {
+        const counts = new Map();
+        history.forEach((h) => counts.set(h.winner.name, (counts.get(h.winner.name) || 0) + 1));
+        let favName = null;
+        let favCount = 0;
+        counts.forEach((c, name) => {
+          if (c > favCount) { favCount = c; favName = name; }
+        });
+
+        favEl.innerHTML = favCount > 1
+          ? `<div class="history-fav-badge">⭐ Il tuo preferito di sempre: <strong>${favName}</strong> (${favCount} vittorie su ${history.length} partite)</div>`
+          : `<div class="history-fav-badge">Partite giocate finora: <strong>${history.length}</strong></div>`;
+
+        listEl.innerHTML = history.map((h) => {
+          const d = new Date(h.date);
+          const dateStr = `${d.toLocaleDateString('it-IT')} ${d.toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' })}`;
+          return `<div class="history-row"><span class="history-date">${dateStr}</span><span class="history-winner">🏆 ${h.winner.name}</span></div>`;
+        }).join('');
+      }
+
+      this.historyOverlay.classList.add('show');
+    }
+
+    _loadImageSafe(src) {
+      return new Promise((resolve) => {
+        if (!src) { resolve(null); return; }
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = () => resolve(null);
+        img.src = src;
+      });
+    }
+
+    _podiumAvatarSource(participant) {
+      if (!participant) return null;
+      if (participant.img) return participant.img;
+      if (participant.audio) {
+        const svg = global.TorneoFlags && global.TorneoFlags[participant.flagCode];
+        if (svg) return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+      }
+      return null;
+    }
+
+    _drawAvatar(ctx, participant, cx, cy, r) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.clip();
+      ctx.fillStyle = '#20263f';
+      ctx.fill();
+      const img = participant && participant._podiumImg;
+      if (img) {
+        const scale = Math.max((r * 2) / img.width, (r * 2) / img.height);
+        const w = img.width * scale;
+        const h = img.height * scale;
+        ctx.drawImage(img, cx - w / 2, cy - h / 2, w, h);
+      } else {
+        ctx.font = `${Math.round(r * 1.1)}px 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('🎵', cx, cy + r * 0.05);
+      }
+      ctx.restore();
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.lineWidth = 6;
+      ctx.strokeStyle = '#f59e0b';
+      ctx.stroke();
+    }
+
+    // Badge della medaglia disegnato come forma vettoriale (cerchio + numero)
+    // invece che con l'emoji 🥇🥈🥉: il rendering degli emoji dentro un
+    // <canvas> dipende dai font di sistema disponibili ed è molto meno
+    // affidabile di quello normale nel DOM, quindi qui evitiamo del tutto
+    // quella dipendenza.
+    _drawMedalBadge(ctx, cx, cy, r, color, label) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.fillStyle = color;
+      ctx.fill();
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = 'rgba(0,0,0,0.3)';
+      ctx.stroke();
+      ctx.fillStyle = '#1a0b02';
+      ctx.font = `800 ${Math.round(r * 1.1)}px 'Poppins', sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(label, cx, cy + r * 0.08);
+      ctx.restore();
+    }
+
+    _wrapName(ctx, text, maxWidth) {
+      const words = (text || '').split(' ');
+      const lines = [];
+      let line = '';
+      words.forEach((w) => {
+        const test = line ? line + ' ' + w : w;
+        if (ctx.measureText(test).width > maxWidth && line) {
+          lines.push(line);
+          line = w;
+        } else {
+          line = test;
+        }
+      });
+      if (line) lines.push(line);
+      return lines.slice(0, 2);
+    }
+
+    async _openPodium() {
+      if (!this._lastPodium) return;
+      await this._renderPodiumCanvas(this._lastPodium);
+      this.podiumOverlay.classList.add('show');
+
+      const shareBtn = this.container.querySelector('#podiumShareBtn');
+      const canSharePodium = !!(navigator.canShare && navigator.share);
+      shareBtn.style.display = canSharePodium ? 'inline-flex' : 'none';
+    }
+
+    async _renderPodiumCanvas(podium) {
+      const canvas = this.container.querySelector('#podiumCanvas');
+      const W = 960;
+      const H = 1180;
+      canvas.width = W;
+      canvas.height = H;
+      const ctx = canvas.getContext('2d');
+
+      const all = [podium.first, podium.second, ...podium.third];
+      await Promise.all(all.filter(Boolean).map(async (p) => {
+        p._podiumImg = await this._loadImageSafe(this._podiumAvatarSource(p));
+      }));
+
+      try { await document.fonts.ready; } catch (e) { /* ignora: va bene usare il font di fallback */ }
+
+      // Sfondo
+      const bg = ctx.createLinearGradient(0, 0, 0, H);
+      bg.addColorStop(0, '#121933');
+      bg.addColorStop(1, '#1a1024');
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, W, H);
+
+      const glow = ctx.createRadialGradient(W / 2, 420, 40, W / 2, 420, 520);
+      glow.addColorStop(0, 'rgba(245,158,11,0.22)');
+      glow.addColorStop(1, 'rgba(245,158,11,0)');
+      ctx.fillStyle = glow;
+      ctx.fillRect(0, 0, W, H);
+
+      // Titolo
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#ffffff';
+      ctx.font = "800 46px 'Poppins', sans-serif";
+      ctx.fillText(`${this.emoji}  ${this.title}`, W / 2, 86);
+      ctx.font = "600 22px 'Poppins', sans-serif";
+      ctx.fillStyle = '#a6aec4';
+      ctx.fillText('Podio finale', W / 2, 126);
+
+      const platform = (cx, topY, width, height, color, label) => {
+        ctx.fillStyle = color;
+        ctx.fillRect(cx - width / 2, topY, width, height);
+        ctx.font = "800 54px 'Poppins', sans-serif";
+        ctx.fillStyle = 'rgba(0,0,0,0.35)';
+        ctx.fillText(label, cx, topY + height / 2 + 18);
+      };
+
+      const nameBlock = (p, cx, y, maxWidth = 240, fontSize = 26) => {
+        if (!p) return;
+        ctx.font = `700 ${fontSize}px 'Poppins', sans-serif`;
+        ctx.fillStyle = '#ffffff';
+        const lines = this._wrapName(ctx, p.name, maxWidth);
+        const lineH = fontSize + 6;
+        lines.forEach((line, i) => ctx.fillText(line, cx, y + i * lineH));
+        if (p.country) {
+          ctx.font = `500 ${Math.round(fontSize * 0.7)}px 'Inter', sans-serif`;
+          ctx.fillStyle = '#a6aec4';
+          ctx.fillText(p.country, cx, y + lines.length * lineH);
+        }
+      };
+
+      const PLATFORM_BOTTOM = 1040;
+      const SECOND_CX = W / 2 - 300;
+      const THIRD_CX = W / 2 + 290;
+
+      // --- 1° posto (centro) ---
+      const firstCy = 330;
+      const firstR = 120;
+      this._drawAvatar(ctx, podium.first, W / 2, firstCy, firstR);
+      this._drawMedalBadge(ctx, W / 2 + firstR * 0.78, firstCy - firstR * 0.78, 36, '#f59e0b', '1');
+      nameBlock(podium.first, W / 2, 490);
+      platform(W / 2, PLATFORM_BOTTOM - 230, 280, 230, '#f59e0b', '1°');
+
+      // --- 2° posto (sinistra) ---
+      if (podium.second) {
+        const secondCy = 400;
+        const secondR = 92;
+        this._drawAvatar(ctx, podium.second, SECOND_CX, secondCy, secondR);
+        this._drawMedalBadge(ctx, SECOND_CX + secondR * 0.78, secondCy - secondR * 0.78, 30, '#cbd5e1', '2');
+        nameBlock(podium.second, SECOND_CX, 530);
+        platform(SECOND_CX, PLATFORM_BOTTOM - 150, 250, 150, '#cbd5e1', '2°');
+      }
+
+      // --- 3° posto (destra, ex aequo se sono due: nessuna finalina) ---
+      const third = podium.third;
+      if (third.length === 1) {
+        const thirdCy = 420;
+        const thirdR = 92;
+        this._drawAvatar(ctx, third[0], THIRD_CX, thirdCy, thirdR);
+        this._drawMedalBadge(ctx, THIRD_CX + thirdR * 0.78, thirdCy - thirdR * 0.78, 30, '#c2793d', '3');
+        nameBlock(third[0], THIRD_CX, 550);
+      } else if (third.length >= 2) {
+        const pairCy = 420;
+        const pairR = 56;
+        const pairOffset = 78;
+        this._drawAvatar(ctx, third[0], THIRD_CX - pairOffset, pairCy, pairR);
+        this._drawAvatar(ctx, third[1], THIRD_CX + pairOffset, pairCy, pairR);
+        this._drawMedalBadge(ctx, THIRD_CX, pairCy - pairR - 24, 28, '#c2793d', '3');
+        ctx.font = "600 18px 'Poppins', sans-serif";
+        ctx.fillStyle = '#a6aec4';
+        ctx.fillText('Ex aequo', THIRD_CX, 500);
+        nameBlock(third[0], THIRD_CX - pairOffset, 528, 150, 19);
+        nameBlock(third[1], THIRD_CX + pairOffset, 528, 150, 19);
+      }
+      if (third.length) {
+        platform(THIRD_CX, PLATFORM_BOTTOM - 100, 250, 100, '#c2793d', '3°');
+      }
+
+      // Firma
+      ctx.font = "600 18px 'Poppins', sans-serif";
+      ctx.fillStyle = '#a6aec4';
+      const dateStr = new Date().toLocaleDateString('it-IT');
+      ctx.fillText(`Torneo • ${dateStr}`, W / 2, H - 36);
+    }
+
+    _downloadPodiumImage() {
+      const canvas = this.container.querySelector('#podiumCanvas');
+      canvas.toBlob((blob) => {
+        if (!blob) return;
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `podio-${this.categoryKey || 'torneo'}.png`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 2000);
+      }, 'image/png');
+    }
+
+    _sharePodiumImage() {
+      const canvas = this.container.querySelector('#podiumCanvas');
+      canvas.toBlob(async (blob) => {
+        if (!blob) return;
+        try {
+          const file = new File([blob], `podio-${this.categoryKey || 'torneo'}.png`, { type: 'image/png' });
+          if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            await navigator.share({ files: [file], title: this.title, text: `Il podio di ${this.title}!` });
+          }
+        } catch (e) {
+          // l'utente ha annullato la condivisione, o il browser non la supporta del tutto: nessun problema.
+        }
+      }, 'image/png');
     }
 
     _confetti() {

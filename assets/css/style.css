@@ -802,6 +802,127 @@ button{ font-family: inherit; }
   transform: scale(1.06);
 }
 
+/* Azioni nella card del vincitore (podio / storico / rigioca) */
+.winner-actions{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Overlay podio */
+.podium-overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(6,8,20,0.9);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+  padding: 24px;
+}
+
+.podium-overlay.show{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.podium-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  max-height: 92vh;
+}
+
+#podiumCanvas{
+  width: min(440px, 86vw);
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 25px 70px rgba(0,0,0,0.6);
+  border: 1px solid var(--border);
+}
+
+.podium-actions{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Overlay storico */
+.history-overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(6,8,20,0.9);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+  padding: 24px;
+}
+
+.history-overlay.show{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.history-card{
+  width: min(440px, 90vw);
+  max-height: 80vh;
+  overflow-y: auto;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 28px 24px;
+  text-align: center;
+  box-shadow: 0 25px 70px rgba(0,0,0,0.6);
+}
+
+.history-card h2{
+  font-family: var(--font-display);
+  margin: 0 0 16px;
+  font-size: 1.3rem;
+}
+
+.history-fav-badge{
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+  color: var(--text-dim);
+}
+
+.history-fav-badge strong{ color: var(--accent-2); }
+
+.history-list{ display: flex; flex-direction: column; gap: 8px; }
+
+.history-row{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 0.86rem;
+  text-align: left;
+}
+
+.history-date{ color: var(--text-dim); }
+.history-winner{ font-weight: 600; }
+.history-empty{ color: var(--text-dim); font-size: 0.9rem; }
+
 .scroll-hint{
   display: none;
 }

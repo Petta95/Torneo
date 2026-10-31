@@ -109,6 +109,7 @@
       emoji: category.emoji,
       description: category.description,
       backLink: key.startsWith('canzoni') ? 'canzoni.html' : 'index.html',
+      categoryKey: key,
       participants: TorneoCategories.buildParticipants(category)
     });
   }
