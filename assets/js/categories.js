@@ -4213,13 +4213,22 @@
 
   function buildParticipants(category) {
     if (category.type === 'audio') {
-      return category.items.map((it) => ({
-        id: it.file.replace(/\.[^.]+$/, ''),
-        name: it.song,
-        country: it.country,
-        flagCode: it.flagCode,
-        audio: `${it.folder || category.folder}/${encodeURIComponent(it.file)}`
-      }));
+      return category.items.map((it) => {
+        const folder = it.folder || category.folder;
+        // La copertina (album/artista/brano) vive accanto all'audio con lo
+        // stesso nome file ma estensione .jpg: non serve elencarla nei dati,
+        // se manca sul disco il fallback alla bandiera (in bracket.js) entra
+        // in gioco da solo via onerror.
+        const coverFile = it.file.replace(/\.[^.]+$/, '.jpg');
+        return {
+          id: it.file.replace(/\.[^.]+$/, ''),
+          name: it.song,
+          country: it.country,
+          flagCode: it.flagCode,
+          audio: `${folder}/${encodeURIComponent(it.file)}`,
+          img: `${folder}/${encodeURIComponent(coverFile)}`
+        };
+      });
     }
     return category.items.map((it) => ({
       id: it.file.replace(/\.[^.]+$/, ''),

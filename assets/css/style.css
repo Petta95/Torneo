@@ -928,20 +928,23 @@ button{ font-family: inherit; }
 }
 
 @media (max-width: 640px){
-  .back-link{ position: static; display: inline-flex; margin-bottom: 14px; }
-  .torneo-header{ text-align: center; }
-  .bracket-wrap{
-    padding: 8px 14px;
-    -webkit-overflow-scrolling: touch;
+  .back-link{
+    position: static;
+    display: inline-flex;
+    margin-bottom: 6px;
+    padding: 5px 11px;
+    font-size: 0.76rem;
   }
-
-  .scroll-hint{
-    display: block;
-    margin: 8px auto 0;
-    text-align: center;
-    font-size: 0.72rem;
-    color: var(--text-dim);
-    animation: nudge 1.8s ease-in-out infinite;
+  .torneo-header{ text-align: center; padding: 4px 16px 0; }
+  .torneo-desc{
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .bracket-wrap{
+    padding: 4px 14px;
+    -webkit-overflow-scrolling: touch;
   }
 
   .slot .zoom-btn{

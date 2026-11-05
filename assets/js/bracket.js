@@ -552,15 +552,20 @@
 
       const thumb = el('div', 'thumb');
       if (participant && participant.audio) {
-        // Categorie audio (es. "musica"): bandiera al posto della foto
-        // e un bottone play/pausa per ascoltare il brano.
-        thumb.classList.add('thumb-flag');
-        const flagSvg = global.TorneoFlags && global.TorneoFlags[participant.flagCode];
-        if (flagSvg) {
-          thumb.innerHTML = flagSvg;
-        } else {
-          thumb.textContent = '🎵';
-        }
+        // Categorie audio: copertina (album/artista/brano) al posto della
+        // foto, con un bottone play/pausa per ascoltare il brano. Se la
+        // copertina non è disponibile, ricade sulla bandiera come prima.
+        const img = document.createElement('img');
+        img.src = participant.img;
+        img.alt = participant.name;
+        img.loading = 'lazy';
+        img.onerror = () => {
+          thumb.classList.add('thumb-flag');
+          const flagSvg = global.TorneoFlags && global.TorneoFlags[participant.flagCode];
+          img.remove();
+          thumb.insertAdjacentHTML('afterbegin', flagSvg || '🎵');
+        };
+        thumb.appendChild(img);
 
         const playBtn = el('button', 'play-btn');
         playBtn.type = 'button';
@@ -782,21 +787,29 @@
       const imgEl = overlay.querySelector('#winnerImg');
       const flagEl = overlay.querySelector('#winnerFlag');
 
-      if (winner.audio) {
+      const showFlagFallback = () => {
         imgEl.style.display = 'none';
         flagEl.style.display = 'flex';
         const flagSvg = global.TorneoFlags && global.TorneoFlags[winner.flagCode];
         flagEl.innerHTML = flagSvg || '🎵';
+      };
 
+      if (winner.img) {
+        imgEl.style.display = 'block';
+        imgEl.onerror = winner.audio ? showFlagFallback : null;
+        imgEl.src = winner.img;
+        imgEl.alt = winner.name;
+        flagEl.style.display = 'none';
+      } else {
+        showFlagFallback();
+      }
+
+      if (winner.audio) {
         this.winnerPlayBtn.style.display = 'inline-flex';
         this.winnerPlayBtn.classList.remove('playing');
         this.winnerPlayBtn.setAttribute('aria-label', `Riproduci ${winner.name}`);
         this.winnerPlayBtn.onclick = () => this._togglePlay(winner, this.winnerPlayBtn);
       } else {
-        imgEl.style.display = 'block';
-        imgEl.src = winner.img;
-        imgEl.alt = winner.name;
-        flagEl.style.display = 'none';
         this.winnerPlayBtn.style.display = 'none';
         this.winnerPlayBtn.onclick = null;
       }
@@ -904,10 +917,13 @@
     _podiumAvatarSource(participant) {
       if (!participant) return null;
       if (participant.img) return participant.img;
-      if (participant.audio) {
-        const svg = global.TorneoFlags && global.TorneoFlags[participant.flagCode];
-        if (svg) return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
-      }
+      return this._podiumFlagSource(participant);
+    }
+
+    _podiumFlagSource(participant) {
+      if (!participant || !participant.audio) return null;
+      const svg = global.TorneoFlags && global.TorneoFlags[participant.flagCode];
+      if (svg) return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
       return null;
     }
 
@@ -999,6 +1015,9 @@
       const all = [podium.first, podium.second, ...podium.third];
       await Promise.all(all.filter(Boolean).map(async (p) => {
         p._podiumImg = await this._loadImageSafe(this._podiumAvatarSource(p));
+        if (!p._podiumImg && p.audio) {
+          p._podiumImg = await this._loadImageSafe(this._podiumFlagSource(p));
+        }
       }));
 
       try { await document.fonts.ready; } catch (e) { /* ignora: va bene usare il font di fallback */ }
