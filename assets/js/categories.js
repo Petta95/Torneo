@@ -4204,6 +4204,69 @@
         { file: "P1014205.JPG", name: "Foto 60" },
         { file: "P1016205.JPG", name: "Foto 61" }
       ]
+    },
+
+    colazione_ideale: {
+      title: 'Colazione Ideale',
+      emoji: '🥐',
+      description: 'Qual è la colazione perfetta? Scegli la tua preferita ad ogni sfida fino alla finale.',
+      folder: 'assets/images/colazione_ideale',
+      items: [
+        { file: 'pancake_sciroppo.jpg', name: 'Pancake con Sciroppo d\'Acero' },
+        { file: 'uova_bacon.jpg', name: 'Uova e Bacon' },
+        { file: 'cappuccino_cornetto.jpg', name: 'Cappuccino e Cornetto' },
+        { file: 'cereali_latte.jpg', name: 'Cereali con Latte' },
+        { file: 'toast_marmellata.jpg', name: 'Toast con Marmellata' },
+        { file: 'french_toast.jpg', name: 'French Toast' },
+        { file: 'avocado_toast.jpg', name: 'Avocado Toast' },
+        { file: 'waffle_frutti_bosco.jpg', name: 'Waffle con Frutti di Bosco' },
+        { file: 'yogurt_granola.jpg', name: 'Yogurt con Granola' },
+        { file: 'muesli.jpg', name: 'Muesli' },
+        { file: 'spremuta_arancia.jpg', name: 'Spremuta d\'Arancia' },
+        { file: 'bagel_cream_cheese.jpg', name: 'Bagel con Cream Cheese' },
+        { file: 'croissant_cioccolato.jpg', name: 'Croissant al Cioccolato' },
+        { file: 'porridge_avena.jpg', name: 'Porridge d\'Avena' },
+        { file: 'frittata.jpg', name: 'Frittata' },
+        { file: 'english_breakfast.jpg', name: 'English Breakfast' },
+        { file: 'smoothie_bowl.jpg', name: 'Smoothie Bowl' },
+        { file: 'pane_uovo_avocado.jpg', name: 'Uovo in Camicia su Pane Tostato' },
+        { file: 'crepes_dolci.jpg', name: 'Crêpes Dolci' },
+        { file: 'biscotti_latte.jpg', name: 'Biscotti e Latte' },
+        { file: 'brioche_marmellata.jpg', name: 'Brioche e Marmellata' }
+      ]
+    },
+
+    copertine_album: {
+      title: 'Copertine di Album Musicali Più Belle',
+      emoji: '💿',
+      description: 'Qual è la copertina di album musicale più bella di sempre? Scegli la tua preferita ad ogni sfida fino alla finale.',
+      folder: 'assets/images/copertine_album',
+      items: [
+        { file: 'dark_side_of_the_moon.jpg', name: 'The Dark Side of the Moon — Pink Floyd' },
+        { file: 'thriller.jpg', name: 'Thriller — Michael Jackson' },
+        { file: 'abbey_road.jpg', name: 'Abbey Road — The Beatles' },
+        { file: 'nevermind.jpg', name: 'Nevermind — Nirvana' },
+        { file: 'rumours.jpg', name: 'Rumours — Fleetwood Mac' },
+        { file: 'back_to_black.jpg', name: 'Back to Black — Amy Winehouse' },
+        { file: 'random_access_memories.jpg', name: 'Random Access Memories — Daft Punk' },
+        { file: 'adele_21.jpg', name: '21 — Adele' },
+        { file: 'ok_computer.jpg', name: 'OK Computer — Radiohead' },
+        { file: 'purple_rain.jpg', name: 'Purple Rain — Prince' },
+        { file: 'sgt_pepper.jpg', name: "Sgt. Pepper's Lonely Hearts Club Band — The Beatles" },
+        { file: 'led_zeppelin_iv.jpg', name: 'Led Zeppelin IV — Led Zeppelin' },
+        { file: 'ziggy_stardust.jpg', name: 'The Rise and Fall of Ziggy Stardust — David Bowie' },
+        { file: 'to_pimp_a_butterfly.jpg', name: 'To Pimp a Butterfly — Kendrick Lamar' },
+        { file: 'lemonade.jpg', name: 'Lemonade — Beyoncé' },
+        { file: 'after_hours.jpg', name: 'After Hours — The Weeknd' },
+        { file: 'the_fame.jpg', name: 'The Fame — Lady Gaga' },
+        { file: 'marshall_mathers_lp.jpg', name: 'The Marshall Mathers LP — Eminem' },
+        { file: 'viva_la_vida.jpg', name: 'Viva la Vida or Death and All His Friends — Coldplay' },
+        { file: 'am.jpg', name: 'AM — Arctic Monkeys' },
+        { file: 'billie_eilish_album.jpg', name: 'When We All Fall Asleep, Where Do We Go? — Billie Eilish' },
+        { file: 'night_at_the_opera.jpg', name: 'A Night at the Opera — Queen' },
+        { file: 'abba_arrival.jpg', name: 'Arrival — ABBA' },
+        { file: 'like_a_prayer.jpg', name: 'Like a Prayer — Madonna' }
+      ]
     }
   };
 
